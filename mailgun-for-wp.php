@@ -26,8 +26,6 @@ namespace MailGunApiForWp {
         CONST PLUGIN_SITE_URL   = 'http://www.codetrest.com';
         CONST PLUGIN_SHORT_CODE = 'mgwp';
 
-        private $settings;
-
         private static $classes = array(
             'Settings'          => '/settings/Settings.php'
         );
@@ -36,8 +34,11 @@ namespace MailGunApiForWp {
 
         }
 
+        public static function start(){
+            $settings = Settings\Settings::getInstance();
+        }
+
         public static function activate(){
-            $settings = Settings\Settings::GetInstance();
         }
 
         public static function deactivate(){
@@ -45,23 +46,26 @@ namespace MailGunApiForWp {
 
         public static function includeClasses(){
             foreach(self::$classes as $className => $classPath){
-                self::classAutoLoad($className);
+                self::includeClass($className, $classPath);
             }
         }
 
-        private static function classAutoLoad($className) {
-            if (!isset(self::$classes[$className])) {
-                return null;
-            }
-            $filePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . trim(self::$classes[$className], '/\\');
+        private static function includeClass($className, $classPath) {
+            $filePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . trim($classPath, '/\\');
             return file_exists($filePath) ? include $filePath : null;
         }
+
+        private static function isMultisite()
+		{
+			return is_multisite();
+		}
     }
     MailGunApiForWp::includeClasses();
 
     if (defined('ABSPATH')) {
         register_activation_hook(__FILE__, array('\MailGunApiForWp\MailGunApiForWp', 'activate'));
 		register_deactivation_hook(__FILE__, array('\MailGunApiForWp\MailGunApiForWp', 'deactivate'));
+        add_action('plugins_loaded', array('\MailGunApiForWp\MailGunApiForWp', 'start'), 0);
     }
 }
 ?>
