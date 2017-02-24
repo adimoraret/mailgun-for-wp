@@ -18,7 +18,6 @@
  * License: GPL-2.0+
  */
 namespace MailGunApiForWp {
-    use MailGunApiForWp\Settings;
     class MailGunApiForWp {
         CONST PLUGIN_VERSION    = '1.0.0';
         CONST PLUGIN_SLUG       = 'mg-wp';
@@ -27,7 +26,8 @@ namespace MailGunApiForWp {
         CONST PLUGIN_SHORT_CODE = 'mgwp';
 
         private static $classes = array(
-            'Settings'          => '/settings/Settings.php'
+            'Settings'          => '/settings/Settings.php',
+            'AdminPage'         => '/settings/AdminPage.php'     
         );
 
         private function __construct(){

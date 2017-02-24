@@ -5,19 +5,15 @@
             CONST NAME = 'MailGun 4 WP';
 
             private function __construct(){
-                add_action('admin_init', array($this, 'initializeAdminPlugin'));
-                $this->displayPluginSettings(false);
+                $this->displayPluginMenu(false);
             }
 
             public static function getInstance() {
                 static $instance = null;
-                if ($instance === null) {
-                    $instance = new Settings();
-                }
-                return $instance;
+                return null !== $instance ? $instance : $instance = new self();
             }
 
-            private function displayPluginSettings($isMultisite) {
+            private function displayPluginMenu($isMultisite) {
                 if ($isMultisite) {
 	                add_action('network_admin_menu', array($this, 'buildPluginMenu'));
                 } else {
@@ -26,11 +22,21 @@
             }
 
             public function buildPluginMenu(){
-                add_menu_page(self::NAME, self::NAME, 'manage_options', 'slug', '', 'dashicons-email', null);
+                $pages = $this->getPages();
+                $firstPage = $pages[0];
+                add_menu_page($firstPage->getTitle(), $firstPage->getTitle(), 'manage_options', $firstPage->getSlug(), '', 'dashicons-email-alt', null);
+                foreach($pages as $page){
+                    add_submenu_page( $firstPage->getSlug(), $page->getTitle(), $page->getTitle(), 'manage_options', $page->getSlug());      
+                }
             }
 
-            public function initializeAdminPlugin(){}
-
+            private function getPages(){
+                return array(
+                    new AdminPage('mgwp-pg-1', 'MailGun 4 WP', 'MailGun for Wordpress'),
+                    new AdminPage('mgwp-pg-2', 'Option-1', 'Option number 1'),
+                    new AdminPage('mgwp-pg-3', 'Option-2', 'Option number 2'),
+                );
+            }
         }
     }
 ?>
