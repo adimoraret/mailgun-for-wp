@@ -32,9 +32,8 @@
 
             private function getPages(){
                 return array(
-                    new AdminPage('mgwp-pg-1', 'MailGun 4 WP', 'MailGun for Wordpress'),
-                    new AdminPage('mgwp-pg-2', 'Option-1', 'Option number 1'),
-                    new AdminPage('mgwp-pg-3', 'Option-2', 'Option number 2'),
+                    new Pages\GeneralSettings(),
+                    new Pages\AdditionalSettings(),
                 );
             }
         }

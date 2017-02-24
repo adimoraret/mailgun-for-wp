@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @package   MailGun for Wordpress
  * @author    Adrian Moraret
  * @license   GPL-2.0+
@@ -26,8 +25,10 @@ namespace MailGunApiForWp {
         CONST PLUGIN_SHORT_CODE = 'mgwp';
 
         private static $classes = array(
-            'Settings'          => '/settings/Settings.php',
-            'AdminPage'         => '/settings/AdminPage.php'     
+            'Settings'              => '/settings/Settings.php',
+            'AdminBasePage'         => '/settings/pages/AdminBasePage.php',
+            'GeneralSettings'       => '/settings/pages/GeneralSettings.php',
+            'AdditionalSettings'    => '/settings/pages/AdditionalSettings.php',            
         );
 
         private function __construct(){
