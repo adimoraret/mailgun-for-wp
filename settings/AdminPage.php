@@ -23,6 +23,10 @@ namespace MailGunApiForWp\Settings{
         public function getBrowserTitle(){
             return $this->browserTitle;
         }
+
+        public function renderPage(){
+            echo "<h1>$this->browserTitle</h1>";
+        }
     }
 }
 ?>

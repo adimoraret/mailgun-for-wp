@@ -24,9 +24,9 @@
             public function buildPluginMenu(){
                 $pages = $this->getPages();
                 $firstPage = $pages[0];
-                add_menu_page($firstPage->getTitle(), $firstPage->getTitle(), 'manage_options', $firstPage->getSlug(), '', 'dashicons-email-alt', null);
+                add_menu_page($firstPage->getTitle(), $firstPage->getTitle(), 'manage_options', $firstPage->getSlug(), array($firstPage, 'renderPage'), 'dashicons-email-alt', null);
                 foreach($pages as $page){
-                    add_submenu_page( $firstPage->getSlug(), $page->getTitle(), $page->getTitle(), 'manage_options', $page->getSlug());      
+                    add_submenu_page( $firstPage->getSlug(), $page->getTitle(), $page->getTitle(), 'manage_options', $page->getSlug(), array($page, 'renderPage'));      
                 }
             }
 
