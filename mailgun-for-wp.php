@@ -28,7 +28,8 @@ namespace MailGunApiForWp {
             'Settings'              => '/settings/Settings.php',
             'AdminBasePage'         => '/settings/pages/AdminBasePage.php',
             'GeneralSettings'       => '/settings/pages/GeneralSettings.php',
-            'AdditionalSettings'    => '/settings/pages/AdditionalSettings.php',            
+            'AdditionalSettings'    => '/settings/pages/AdditionalSettings.php',
+            'MenuBuilder'           => '/settings/menu/MenuBuilder.php'       
         );
 
         private function __construct(){
@@ -36,7 +37,8 @@ namespace MailGunApiForWp {
         }
 
         public static function start(){
-            $settings = Settings\Settings::getInstance();
+            $settings = new Settings\Settings();
+            $settings->showMenu();
         }
 
         public static function activate(){
