@@ -1,0 +1,17 @@
+{
+  "name": "mailgun-for-wordpress",
+  "version": "1.0.0",
+  "description": "Mailgun for Wordpress",
+  "main": "index.js",
+  "scripts": {
+    "sync": "babel-node node_tools/sync-plugin.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Moraret",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "cpx": "^1.5.0"
+  }
+}
