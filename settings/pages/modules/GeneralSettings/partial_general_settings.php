@@ -1,0 +1,1 @@
+<h2> I'm in partial_general_settings </h2>

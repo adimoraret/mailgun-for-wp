@@ -26,10 +26,11 @@ namespace MailGunApiForWp {
 
         private static $classes = array(
             'Settings'              => '/settings/Settings.php',
-            'AdminBasePage'         => '/settings/pages/AdminBasePage.php',
-            'GeneralSettings'       => '/settings/pages/GeneralSettings.php',
-            'AdditionalSettings'    => '/settings/pages/AdditionalSettings.php',
-            'MenuBuilder'           => '/settings/menu/MenuBuilder.php'       
+            'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
+            'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
+            'AdditionalSettings'    => '/settings/pages/modules/additionalsettings/AdditionalSettings.php',
+            'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
+            'PartialRender'         => '/utils/PartialRender.php'   
         );
 
         private function __construct(){

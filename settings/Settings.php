@@ -12,8 +12,8 @@
 
             private function getPages(){
                 return array(
-                    new Pages\GeneralSettings(),
-                    new Pages\AdditionalSettings(),
+                    new Pages\Modules\GeneralSettings\GeneralSettings(),
+                    new Pages\Modules\AdditionalSettings\AdditionalSettings(),
                 );
             }
         }
