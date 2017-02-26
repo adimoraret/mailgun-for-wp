@@ -18,4 +18,3 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         }
     }
 }
-?>

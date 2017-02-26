@@ -72,4 +72,3 @@ namespace MailGunApiForWp {
         add_action('plugins_loaded', array('\MailGunApiForWp\MailGunApiForWp', 'start'), 0);
     }
 }
-?>

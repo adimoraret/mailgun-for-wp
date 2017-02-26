@@ -15,12 +15,11 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getInputs(){
-            /*return array(
-                new Input\Input("Name", "text", "Here is the name", true),
-                new Input\Input("Address", "textarea", "Here is the address", false),
-                new Input\Input("Password", "password", "Enter password", false),
-            );*/
+            return array(
+                new MailGunApiForWp\Settings\Pages\Input\Input("Name", "text", "Here is the name", true),
+                new MailGunApiForWp\Settings\Pages\Input\Input("Address", "textarea", "Here is the address", false),
+                new MailGunApiForWp\Settings\Pages\Input\Input("Password", "password", "Enter password", false),
+            );
         }
     }
 }
-?>
