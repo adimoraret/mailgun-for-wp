@@ -13,8 +13,11 @@ namespace MailGunApiForWp\Settings\Pages\Modules\AdditionalSettings {
         public function getInputs(){
             return array();
         }
-        protected function getPartialFile(){
-            return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_additional_settings.php';
+        public function renderPage(){
+            include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_additional_settings.php';
         }
+        protected function validateForm(){
+
+        }  
     }
 }

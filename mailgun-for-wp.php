@@ -26,11 +26,12 @@ namespace MailGunApiForWp {
 
         private static $classes = array(
             'Settings'              => '/settings/Settings.php',
+            'Input'                 => '/settings/pages/input/Input.php',
             'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
             'AdditionalSettings'    => '/settings/pages/modules/additionalsettings/AdditionalSettings.php',
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
-            'PartialRender'         => '/utils/PartialRender.php'   
+            'WordpressUtil'         => '/utils/WordpressUtil.php'
         );
 
         private function __construct(){
@@ -58,11 +59,6 @@ namespace MailGunApiForWp {
             $filePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . trim($classPath, '/\\');
             return file_exists($filePath) ? include $filePath : null;
         }
-
-        private static function isMultisite()
-		{
-			return is_multisite();
-		}
     }
     MailGunApiForWp::includeClasses();
 
