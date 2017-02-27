@@ -1,6 +1,17 @@
 <?php
 namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
     class GeneralSettings extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage{
+        private $nameInput;
+        private $addressInput;
+        private $passwordInput;
+
+        public function __construct(){
+            parent::__construct($this);
+            $this->nameInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Name', 'text', 'To the do the best', 'Here is the name', true);
+            $this->addressInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Address', 'textarea', 'Where is not what', 'Here is the address', false);
+            $this->passwordInput =  new \MailGunApiForWp\Settings\Pages\Input\Input('Password', 'password', 'One password is never enough', 'Enter password', false);
+        }
+
         public function getSlug() {
             return 'mgwp-pg-1';
         }
@@ -12,20 +23,17 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getInputs(){
-            return array(
-                new \MailGunApiForWp\Settings\Pages\Input\Input('Name', 'text', 'To the do the best', 'Here is the name', true),
-                new \MailGunApiForWp\Settings\Pages\Input\Input('Address', 'textarea', 'Where is not what', 'Here is the address', false),
-                new \MailGunApiForWp\Settings\Pages\Input\Input('Password', 'password', 'One password is never enough', 'Enter password', false),
-            );
+            return array($this->nameInput, $this->addressInput, $this->passwordInput);
         }
 
         public function renderPage(){
             include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_general_settings.php';
         }
 
-
-        protected function validateForm(){
-
+        public function validateForm($formData){
+            echo 'GeneralSettings';
+            $nameInputValue = $formData[$this->nameInput->getName()];
+            echo 'The value is: ' . $nameInputValue;
         }
 
         private function getSubmitButtonText(){

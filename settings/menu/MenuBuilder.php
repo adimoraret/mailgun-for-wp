@@ -19,7 +19,7 @@ namespace MailGunApiForWp\Settings\Menu {
             $firstPage = $this->pages[0];
             add_menu_page($firstPage->getTitle(), $firstPage->getTitle(), 'manage_options', $firstPage->getSlug(), array($firstPage, 'renderPage'), 'dashicons-email-alt', null);
             foreach($this->pages as $page){
-                add_submenu_page( $firstPage->getSlug(), $page->getTitle(), $page->getTitle(), 'manage_options', $page->getSlug(), array($page, 'renderPage'));      
+                add_submenu_page( $firstPage->getSlug(), $page->getTitle(), $page->getTitle(), 'manage_options', $page->getSlug(), array($page, 'renderPage'));
             }
         }
     }

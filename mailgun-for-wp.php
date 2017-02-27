@@ -31,7 +31,8 @@ namespace MailGunApiForWp {
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
             'AdditionalSettings'    => '/settings/pages/modules/additionalsettings/AdditionalSettings.php',
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
-            'WordpressUtil'         => '/utils/WordpressUtil.php'
+            'WordpressUtil'         => '/utils/WordpressUtil.php',
+            'WordpressDisplayUtil'  => '/utils/WordpressDisplayUtil.php'
         );
 
         private function __construct(){

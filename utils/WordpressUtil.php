@@ -11,7 +11,7 @@ namespace MailGunApiForWp\Utils {
 		}
 
         public static function getFormAction(){
-            self::isMultisite() ? 'options.php' : '';
+            return self::isMultisite() ? '' : 'options.php';
         }
     }
 }
