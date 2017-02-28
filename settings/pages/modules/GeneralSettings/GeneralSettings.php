@@ -13,7 +13,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getSlug() {
-            return 'mgwp_pg_1';
+            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-1';
         }
         public function getTitle(){
             return 'MailGun 4 WP';

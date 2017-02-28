@@ -5,7 +5,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\AdditionalSettings {
             parent::__construct();
         }
         public function getSlug() {
-            return 'mgwp_pg_2';
+            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-2';
         }
         public function getTitle(){
             return 'Additional Settings';

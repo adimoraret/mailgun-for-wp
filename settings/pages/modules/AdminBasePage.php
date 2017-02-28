@@ -12,10 +12,10 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         public abstract function validateForm($formData);
         protected abstract function renderPage();
         public function getOptionGroup(){
-            return 'mg_wp_stg' . '_' . $this->getSlug();
+            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
         }
         public function getOptionName(){
-            return 'mg_wp' . '_' . $this->getSlug();
+            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
         }
 
         public function initializePage(){
