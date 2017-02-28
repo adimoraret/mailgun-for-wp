@@ -30,12 +30,15 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_general_settings.php';
         }
 
-        public function validateForm($formData){
-            $nameInputValue = $formData[$this->nameInput->getName()];
-        }
-
         private function getSubmitButtonText(){
             return 'Save changes';
-        } 
+        }
+
+        public function validateForm($formData){
+            $nameInputValue = $formData[$this->nameInput->getName()];
+            return $formData;
+        }
+
+ 
     }
 }
