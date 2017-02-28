@@ -16,8 +16,9 @@ namespace MailGunApiForWp\Utils {
 
     private static function displayInputField($input, $optionName){ 
         switch ($input->getType()) {
+            case 'text': self::displayTextInputField($input, $optionName); break;            
             case 'textarea': self::displayTextareaInputField($input, $optionName); break;
-            default: self::displayTextInputField($input, $optionName);break;
+            default: self::displayGenericInputField($input, $optionName);break;
         }
     }
 
@@ -26,7 +27,7 @@ namespace MailGunApiForWp\Utils {
         <tr valign="top">
             <th scope="row"><?php echo $input->getName(); echo $input->getIsRequired() ? '*' : ''?></th> 
             <td>
-                <input type="<?php echo $input->getType()?>" name="<?php echo $optionName . '[' . $input->getName() . ']'?>" value="<?php echo $input->value?>"/>
+                <input type="text" name="<?php echo $optionName . '[' . $input->getName() . ']'?>" value="<?php echo $input->value?>" <?php echo $input->getIsRequired() ? 'required' : ''?>/>
                 <p class="description"><?php echo $input->getDescription() ?></p>
             </td>
         </tr>
@@ -37,11 +38,23 @@ namespace MailGunApiForWp\Utils {
         <tr valign="top">
             <th scope="row"><?php echo $input->getName(); echo $input->getIsRequired() ? '*' : ''?></th> 
             <td>
-                <textarea name="<?php echo $optionName . '[' . $input->getName() . ']'?>"><?php echo $input->value?></textarea>
+                <textarea name="<?php echo $optionName . '[' . $input->getName() . ']'?>"<?php echo $input->getIsRequired() ? 'required' : ''?>><?php echo $input->value?></textarea>
                 <p class="description"><?php echo $input->getDescription() ?></p>
             </td>
         </tr>
     <?php }
+
+    private static function displayGenericInputField($input, $optionName){
+    ?>
+        <tr valign="top">
+            <th scope="row"><?php echo $input->getName(); echo $input->getIsRequired() ? '*' : ''?></th> 
+            <td>
+                <input type="<?php echo $input->getType()?>" name="<?php echo $optionName . '[' . $input->getName() . ']'?>" value="<?php echo $input->value?>" <?php echo $input->getIsRequired() ? 'required' : ''?>/>
+                <p class="description"><?php echo $input->getDescription() ?></p>
+            </td>
+        </tr>
+    <?php }
+
     }
 }
 ?>

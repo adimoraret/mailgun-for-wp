@@ -9,7 +9,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             parent::__construct();
             $this->nameInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Name', 'text', 'To the do the best', 'Here is the name', true);
             $this->addressInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Address', 'textarea', 'Where is not what', 'Here is the address', false);
-            $this->passwordInput =  new \MailGunApiForWp\Settings\Pages\Input\Input('Password', 'password', 'One password is never enough', 'Enter password', false);
+            $this->passwordInput =  new \MailGunApiForWp\Settings\Pages\Input\Input('Email', 'email', 'One email is never enough', 'Enter email', false);
         }
 
         public function getSlug() {
