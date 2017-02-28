@@ -6,14 +6,14 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         private $passwordInput;
 
         public function __construct(){
-            parent::__construct($this);
+            parent::__construct();
             $this->nameInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Name', 'text', 'To the do the best', 'Here is the name', true);
             $this->addressInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Address', 'textarea', 'Where is not what', 'Here is the address', false);
             $this->passwordInput =  new \MailGunApiForWp\Settings\Pages\Input\Input('Password', 'password', 'One password is never enough', 'Enter password', false);
         }
 
         public function getSlug() {
-            return 'mgwp-pg-1';
+            return 'mgwp_pg_1';
         }
         public function getTitle(){
             return 'MailGun 4 WP';
@@ -31,9 +31,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function validateForm($formData){
-            echo 'GeneralSettings';
             $nameInputValue = $formData[$this->nameInput->getName()];
-            echo 'The value is: ' . $nameInputValue;
         }
 
         private function getSubmitButtonText(){

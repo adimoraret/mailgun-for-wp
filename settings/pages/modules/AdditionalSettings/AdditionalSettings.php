@@ -2,10 +2,10 @@
 namespace MailGunApiForWp\Settings\Pages\Modules\AdditionalSettings {
     class AdditionalSettings extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage{
         public function __construct(){
-            parent::__construct($this);
+            parent::__construct();
         }
         public function getSlug() {
-            return 'mgwp-pg-2';
+            return 'mgwp_pg_2';
         }
         public function getTitle(){
             return 'Additional Settings';

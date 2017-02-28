@@ -2,9 +2,7 @@
 
 namespace MailGunApiForWp\Settings\Pages\Modules {
     abstract class AdminBasePage {
-        private $caller;
-        protected function __construct($caller) {
-            $this->caller = $caller;
+        protected function __construct() {
             add_action('admin_init', array($this, 'initializePage'));
         }
 
@@ -14,22 +12,18 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         public abstract function validateForm($formData);
         protected abstract function renderPage();
         public function getOptionGroup(){
-            return 'mailgun-4-wp-settings' . '-' . $this->getSlug();
+            return 'mg_wp_stg' . '_' . $this->getSlug();
         }
-        private function getOptionName(){
-            return 'mailgun_4_wp' . '-' . $this->getSlug();
+        public function getOptionName(){
+            return 'mg_wp' . '_' . $this->getSlug();
         }
 
         public function initializePage(){
-            register_setting($this->getOptionGroup(), $this->getOptionName(), array($this, 'validate'));
+            register_setting($this->getOptionGroup(), $this->getOptionName(), array($this, 'validateForm'));
         }
 
         public function getSavedOptions(){
-            return get_option('mailgun_4_wp');
-        }
-
-        public function validate($formData){
-           return $this->validateForm($formData);
+            return get_option($this->getOptionName());
         }
     }
 }
