@@ -5,7 +5,6 @@ namespace MailGunApiForWp\Settings\Pages\Input{
         private $name;
         private $radioButtons;
         private $isRequired;
-        public $value;
         
         public function __construct($label, $radioButtons) {
             $this->label = $label;

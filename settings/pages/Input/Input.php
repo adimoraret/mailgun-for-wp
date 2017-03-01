@@ -7,15 +7,16 @@ namespace MailGunApiForWp\Settings\Pages\Input{
         private $type;
         private $isRequired;
         private $description;
-        public $value;
+        private $value;
         
-        public function __construct($label, $name, $id, $type, $description, $isRequired) {
+        public function __construct($label, $name, $id, $type, $description, $isRequired, $value) {
             $this->label = $label;
             $this->name = $name;
             $this->id = $id;
             $this->type = $type;
             $this->description = $description;
             $this->isRequired = $isRequired;
+            $this->value = $value;
         }
 
         public function getLabel() {
@@ -44,6 +45,10 @@ namespace MailGunApiForWp\Settings\Pages\Input{
 
         public function getIsRequired() {
             return $this->isRequired;
+        }
+
+        public function getValue() {
+            return $this->value;
         }
     }
 }

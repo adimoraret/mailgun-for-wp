@@ -21,20 +21,19 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function validateForm($formData) {
-            $nameInputValue = $formData[$this->nameInput->getName()];
             return $formData;
         }
 
         private function getInputs() {
             return array(
                 new \MailGunApiForWp\Settings\Pages\Input\RadioButtonGroup('Email send method', array(
-                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Http', 'sendmethod', 'httpmethod', 'radio', 'Send emails via HTTP calls', true, true),
-                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Smtp', 'sendmethod', 'smtpmethod', 'radio', 'Send emails via SMTP calls', false, true))
+                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Http', 'sendmethod', 'httpmethod', 'radio', 'Send emails via HTTP calls', true, true, 0),
+                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Smtp', 'sendmethod', 'smtpmethod', 'radio', 'Send emails via SMTP calls', false, true, 1))
                 ),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true)
+                new \MailGunApiForWp\Settings\Pages\Input\TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true, ''),
+                new \MailGunApiForWp\Settings\Pages\Input\TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true, ''),
+                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true, ''),
+                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true, '')
             );
         }
 
