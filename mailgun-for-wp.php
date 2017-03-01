@@ -38,22 +38,18 @@ namespace MailGunApiForWp {
             'WordpressDisplayUtil'  => '/utils/WordpressDisplayUtil.php'
         );
 
-        private function __construct(){
+        private function __construct() {}
 
-        }
-
-        public static function start(){
+        public static function start() {
             $settings = new Settings\Settings();
             $settings->showMenu();
         }
 
-        public static function activate(){
-        }
+        public static function activate() {}
 
-        public static function deactivate(){
-        }
+        public static function deactivate() {}
 
-        public static function includeClasses(){
+        public static function includeClasses() {
             foreach(self::$classes as $className => $classPath){
                 self::includeClass($className, $classPath);
             }

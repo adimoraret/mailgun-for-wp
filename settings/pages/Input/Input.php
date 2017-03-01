@@ -9,7 +9,7 @@ namespace MailGunApiForWp\Settings\Pages\Input{
         private $description;
         public $value;
         
-        public function __construct($label, $name, $id, $type, $description, $isRequired){
+        public function __construct($label, $name, $id, $type, $description, $isRequired) {
             $this->label = $label;
             $this->name = $name;
             $this->id = $id;
@@ -18,31 +18,31 @@ namespace MailGunApiForWp\Settings\Pages\Input{
             $this->isRequired = $isRequired;
         }
 
-        public function getLabel(){
+        public function getLabel() {
             return $this->label;
         }
         
-        public function getName(){
+        public function getName() {
             return $this->name;
         }
 
-        public function getId(){
+        public function getId() {
             return $this->id;
         }
 
-        public function getType(){
+        public function getType() {
             return $this->type;
         }
 
-        public function getDescription(){
+        public function getDescription() {
             return $this->description;
         }
 
-        public function getPlaceholder(){
+        public function getPlaceholder() {
             return $this->placeholder;
         }
 
-        public function getIsRequired(){
+        public function getIsRequired() {
             return $this->isRequired;
         }
     }

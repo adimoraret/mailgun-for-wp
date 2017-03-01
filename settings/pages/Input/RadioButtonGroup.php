@@ -7,28 +7,27 @@ namespace MailGunApiForWp\Settings\Pages\Input{
         private $isRequired;
         public $value;
         
-        public function __construct($label, $radioButtons){
+        public function __construct($label, $radioButtons) {
             $this->label = $label;
             $this->radioButtons = $radioButtons;
             $this->name = $this->radioButtons[0]->getName();
             $this->isRequired = $this->radioButtons[0]->getIsRequired();
         }
 
-        public function getLabel(){
+        public function getLabel() {
             return $this->label;
         }
 
-        public function getName(){
+        public function getName() {
             return $this->name;
         }
 
-        public function getRadioButtons(){
+        public function getRadioButtons() {
             return $this->radioButtons;
         }
 
-        public function getIsRequired(){
+        public function getIsRequired() {
             return $this->isRequired;
         }
-
     }
 }
