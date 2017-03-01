@@ -1,15 +1,22 @@
 <?php
 namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
     class GeneralSettings extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage{
-        private $nameInput;
-        private $addressInput;
-        private $passwordInput;
+        private $sendMethod;                
+        private $domainName;        
+        private $apiKey;
+        private $fromAddress;
+        private $fromName;
 
         public function __construct(){
             parent::__construct();
-            $this->nameInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Name', 'text', 'To the do the best', 'Here is the name', true);
-            $this->addressInput = new \MailGunApiForWp\Settings\Pages\Input\Input('Address', 'textarea', 'Where is not what', 'Here is the address', false);
-            $this->passwordInput =  new \MailGunApiForWp\Settings\Pages\Input\Input('Email', 'email', 'One email is never enough', 'Enter email', false);
+            $this->sendMethod = new \MailGunApiForWp\Settings\Pages\Input\RadioButtonGroup('Email send method', array(
+                new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Http', 'sendmethod', 'httpmethod', 'radio', 'Send emails via HTTP calls', true, true),
+                new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Smtp', 'sendmethod', 'smtpmethod', 'radio', 'Send emails via SMTP calls', false, true))
+            );
+            $this->domainName = new \MailGunApiForWp\Settings\Pages\Input\TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true);
+            $this->apiKey = new \MailGunApiForWp\Settings\Pages\Input\TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true);
+            $this->fromAddress =  new \MailGunApiForWp\Settings\Pages\Input\TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true);
+            $this->fromName =  new \MailGunApiForWp\Settings\Pages\Input\TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true);
         }
 
         public function getSlug() {
@@ -23,7 +30,12 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getInputs(){
-            return array($this->nameInput, $this->addressInput, $this->passwordInput);
+            return array(
+                $this->sendMethod, 
+                $this->domainName, 
+                $this->apiKey, 
+                $this->fromAddress,
+                $this->fromName);
         }
 
         public function renderPage(){

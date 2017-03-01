@@ -27,6 +27,9 @@ namespace MailGunApiForWp {
         private static $classes = array(
             'Settings'              => '/settings/Settings.php',
             'Input'                 => '/settings/pages/input/Input.php',
+            'TextInput'             => '/settings/pages/input/TextInput.php',
+            'RadioButton'           => '/settings/pages/input/RadioButton.php',
+            'RadioButtonGroup'      => '/settings/pages/input/RadioButtonGroup.php',            
             'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
             'AdditionalSettings'    => '/settings/pages/modules/additionalsettings/AdditionalSettings.php',
