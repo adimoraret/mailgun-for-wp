@@ -10,7 +10,7 @@ namespace MailGunApiForWp\Settings {
         private function getPages() {
             return array(
                 new Pages\Modules\GeneralSettings\GeneralSettings(),
-                new Pages\Modules\AdditionalSettings\AdditionalSettings(),
+                new Pages\Modules\Tracking\Tracking(),
             );
         }
     }

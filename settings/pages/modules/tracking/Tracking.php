@@ -1,7 +1,6 @@
 <?php
-namespace MailGunApiForWp\Settings\Pages\Modules\AdditionalSettings {
-    //TODO
-    class AdditionalSettings extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage{
+namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
+    class Tracking extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage{
         public function __construct(){
             parent::__construct();
         }
@@ -9,20 +8,19 @@ namespace MailGunApiForWp\Settings\Pages\Modules\AdditionalSettings {
             return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-2';
         }
         public function getTitle(){
-            return 'Additional Settings';
+            return 'Email Tracking';
         }
         public function getBrowserTitle(){
-            return 'Some additional settings';
+            return 'Email Tracking';
         }
         public function getInputs(){
             return array();
         }
         public function renderPage(){
-            include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_additional_settings.php';
+            include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_tracking.php';
         }
         public function validateForm($formData){
-            echo "AdditionalSettings";
-            die();
+            return $formData;
         }  
     }
 }
