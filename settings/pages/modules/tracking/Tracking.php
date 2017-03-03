@@ -3,15 +3,18 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
 
     use MailGunApiForWp\MailGunApiForWp;
     use MailGunApiForWp\Settings\Pages\Modules\AdminBasePage;
+    use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\Input;
 
     class Tracking extends AdminBasePage{
         private $trackLinks;
         private $trackOpenEmail;
+        private $submitButton;
 
         public function __construct(){
             parent::__construct();
             $this->initializeInputs();
+            $this->initializeButtons();
         }
         public function getSlug() {
             return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-2';
@@ -40,8 +43,12 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
             return $formData;
         }
 
-        private function getSubmitButtonText(){
-            return 'Save changes';
+        private function initializeButtons() {
+            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes');
+        }
+
+        private function getButtons() {
+            return array($this->submitButton);
         }
     }
 }

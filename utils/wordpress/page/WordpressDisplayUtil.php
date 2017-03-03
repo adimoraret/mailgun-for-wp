@@ -7,7 +7,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
 
     final class WordpressDisplayUtil {
     
-        public static function displayFormTable($savedOptions, $inputs, $optionName, $submitButtonText) { ?>
+        public static function displayFormTable($savedOptions, $inputs, $optionName, $buttons) { ?>
             <table class="form-table">
                 <tbody> <?php
                     foreach($inputs as $input){
@@ -16,7 +16,13 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                     } ?>
                 </tbody>
             </table>
-            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e($submitButtonText, MailGunApiForWp::PLUGIN_SLUG); ?>" />
+            <?php foreach ($buttons as $button){ ?>
+                <input type="<?php echo $button->getType();?>"
+                   name="<?php echo $button->getName();?>"
+                   id="<?php echo $button->getId();?>"
+                   class="<?php echo $button->getClassName();?>"
+                   value="<?php _e($button->getValue(), MailGunApiForWp::PLUGIN_SLUG);?>"/>
+            <?php } ?>
         <?php }
 
         private static function displayField($input, $optionName, $dbValue) {

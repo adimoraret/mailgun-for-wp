@@ -32,10 +32,11 @@ namespace MailGunApiForWp {
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
             'WordpressUtil'         => '/utils/wordpress/WordpressUtil.php',
             'WordpressDisplayUtil'  => '/utils/wordpress/page/WordpressDisplayUtil.php',
+            'Button'                => '/utils/wordpress/page/button/Button.php',
             'Input'                 => '/utils/wordpress/page/input/Input.php',
             'TextInput'             => '/utils/wordpress/page/input/TextInput.php',
             'RadioButton'           => '/utils/wordpress/page/input/RadioButton.php',
-            'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php',
+            'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php'
         );
 
         private function __construct() {}

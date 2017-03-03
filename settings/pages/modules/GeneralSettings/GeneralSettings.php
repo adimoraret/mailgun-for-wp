@@ -3,6 +3,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
 
     use MailGunApiForWp\MailGunApiForWp;
     use MailGunApiForWp\Settings\Pages\Modules\AdminBasePage;
+    use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButton;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
@@ -14,10 +15,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         private $apiKey;
         private $fromAddress;
         private $fromName;
+        private $submitButton;
+        private $testConfigurationButton;
 
         public function __construct() {
             parent::__construct();
             $this->initializeInputs();
+            $this->initializeButtons();
         }
 
         public function getSlug() {
@@ -57,14 +61,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
                 $this->fromName
             );
         }
-
-        private function getSubmitButtonText() {
-            return 'Save changes';
+        private function initializeButtons() {
+            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes');
+            $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration');
         }
 
-        private function getTestConfigurationButtonText() {
-            return 'Test Configuration';
+        private function getButtons() {
+            return array($this->submitButton, $this->testConfigurationButton);
         }
-
     }
 }

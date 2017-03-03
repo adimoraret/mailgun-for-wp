@@ -10,9 +10,9 @@
         settings_fields($this->getOptionGroup());
         $savedOptions = $this->getSavedOptions();
         $inputs = $this->getInputs();
-        $submitButtonText = $this->getSubmitButtonText();
+        $buttons = $this->getButtons();
         $optionName = $this->getOptionName();
-        WordpressDisplayUtil::displayFormTable($savedOptions, $inputs, $optionName, $submitButtonText);
+        WordpressDisplayUtil::displayFormTable($savedOptions, $inputs, $optionName, $buttons);
         ?>
     </form>
 </div>
