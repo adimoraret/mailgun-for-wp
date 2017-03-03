@@ -26,16 +26,16 @@ namespace MailGunApiForWp {
 
         private static $classes = array(
             'Settings'              => '/settings/Settings.php',
-            'Input'                 => '/settings/pages/input/Input.php',
-            'TextInput'             => '/settings/pages/input/TextInput.php',
-            'RadioButton'           => '/settings/pages/input/RadioButton.php',
-            'RadioButtonGroup'      => '/settings/pages/input/RadioButtonGroup.php',            
             'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
             'Tracking'              => '/settings/pages/modules/tracking/Tracking.php',
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
-            'WordpressUtil'         => '/utils/WordpressUtil.php',
-            'WordpressDisplayUtil'  => '/utils/WordpressDisplayUtil.php'
+            'WordpressUtil'         => '/utils/wordpress/WordpressUtil.php',
+            'WordpressDisplayUtil'  => '/utils/wordpress/page/WordpressDisplayUtil.php',
+            'Input'                 => '/utils/wordpress/page/input/Input.php',
+            'TextInput'             => '/utils/wordpress/page/input/TextInput.php',
+            'RadioButton'           => '/utils/wordpress/page/input/RadioButton.php',
+            'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php',
         );
 
         private function __construct() {}
@@ -51,11 +51,11 @@ namespace MailGunApiForWp {
 
         public static function includeClasses() {
             foreach(self::$classes as $className => $classPath){
-                self::includeClass($className, $classPath);
+                self::includeClass($classPath);
             }
         }
 
-        private static function includeClass($className, $classPath) {
+        private static function includeClass($classPath) {
             $filePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . trim($classPath, '/\\');
             return file_exists($filePath) ? include $filePath : null;
         }

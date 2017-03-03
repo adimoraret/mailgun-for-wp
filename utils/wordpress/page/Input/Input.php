@@ -1,5 +1,5 @@
 <?php
-namespace MailGunApiForWp\Settings\Pages\Input{
+namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
     class Input {
         private $label;
         private $name;
@@ -37,10 +37,6 @@ namespace MailGunApiForWp\Settings\Pages\Input{
 
         public function getDescription() {
             return $this->description;
-        }
-
-        public function getPlaceholder() {
-            return $this->placeholder;
         }
 
         public function getIsRequired() {

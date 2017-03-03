@@ -1,5 +1,9 @@
 <?php
 namespace MailGunApiForWp\Settings {
+
+    use MailGunApiForWp\Settings\Pages\Modules\GeneralSettings\GeneralSettings;
+    use MailGunApiForWp\Settings\Pages\Modules\Tracking\Tracking;
+
     class Settings{
         public function showMenu() {
             $pages = $this->getPages();
@@ -9,8 +13,8 @@ namespace MailGunApiForWp\Settings {
 
         private function getPages() {
             return array(
-                new Pages\Modules\GeneralSettings\GeneralSettings(),
-                new Pages\Modules\Tracking\Tracking(),
+                new GeneralSettings(),
+                new Tracking(),
             );
         }
     }

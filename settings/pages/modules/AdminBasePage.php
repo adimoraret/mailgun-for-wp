@@ -1,6 +1,9 @@
 <?php
 
 namespace MailGunApiForWp\Settings\Pages\Modules {
+
+    use MailGunApiForWp\MailGunApiForWp;
+
     abstract class AdminBasePage {
         protected function __construct() {
             add_action('admin_init', array($this, 'initializePage'));
@@ -11,11 +14,11 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         }
 
         protected function getOptionGroup() {
-            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
+            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
         }
 
         protected function getOptionName() {
-            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
+            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
         }
 
         protected function getSavedOptions() {

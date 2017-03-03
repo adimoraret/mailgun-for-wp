@@ -1,5 +1,5 @@
 <?php
-namespace MailGunApiForWp\Settings\Pages\Input {
+namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
     class TextInput extends Input {
         private $placeholder;
         

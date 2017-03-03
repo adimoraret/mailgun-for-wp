@@ -1,13 +1,27 @@
 <?php
 namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
-    class GeneralSettings extends \MailGunApiForWp\Settings\Pages\Modules\AdminBasePage {
+
+    use MailGunApiForWp\MailGunApiForWp;
+    use MailGunApiForWp\Settings\Pages\Modules\AdminBasePage;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButton;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
+
+    class GeneralSettings extends AdminBasePage {
+
+        private $radioButtonGroup;
+        private $domainName;
+        private $apiKey;
+        private $fromAddress;
+        private $fromName;
 
         public function __construct() {
             parent::__construct();
+            $this->initializeInputs();
         }
 
         public function getSlug() {
-            return \MailGunApiForWp\MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-1';
+            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-1';
         }
         public function getTitle() {
             return 'MailGun 4 WP';
@@ -24,21 +38,33 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             return $formData;
         }
 
+        private function initializeInputs() {
+            $this->radioButtonGroup = new RadioButtonGroup('Email send method', array(
+                    new RadioButton('Http', 'sendmethod', 'httpmethod', 'radio', 'Send emails via HTTP calls', true, true, 0),
+                    new RadioButton('Smtp', 'sendmethod', 'smtpmethod', 'radio', 'Send emails via SMTP calls', false, true, 1))
+            );
+            $this->domainName = new TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true, '');
+            $this->apiKey = new TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true, '');
+            $this->fromAddress = new TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true, '');
+            $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true, '');
+        }
+
         private function getInputs() {
-            return array(
-                new \MailGunApiForWp\Settings\Pages\Input\RadioButtonGroup('Email send method', array(
-                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Http', 'sendmethod', 'httpmethod', 'radio', 'Send emails via HTTP calls', true, true, 0),
-                    new \MailGunApiForWp\Settings\Pages\Input\RadioButton('Smtp', 'sendmethod', 'smtpmethod', 'radio', 'Send emails via SMTP calls', false, true, 1))
-                ),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true, ''),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true, ''),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true, ''),
-                new \MailGunApiForWp\Settings\Pages\Input\TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true, '')
+            return array($this->radioButtonGroup,
+                $this->domainName,
+                $this->apiKey,
+                $this->fromAddress,
+                $this->fromName
             );
         }
 
         private function getSubmitButtonText() {
             return 'Save changes';
         }
+
+        private function getTestConfigurationButtonText() {
+            return 'Test Configuration';
+        }
+
     }
 }

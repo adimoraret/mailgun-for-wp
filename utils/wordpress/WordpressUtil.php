@@ -1,5 +1,5 @@
 <?php
-namespace MailGunApiForWp\Utils { 
+namespace MailGunApiForWp\Utils\Wordpress {
     final class WordpressUtil {
         public static function isMultisite() {
 			return is_multisite();
