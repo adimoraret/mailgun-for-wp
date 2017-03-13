@@ -4,5 +4,6 @@
         "npm-debug.log": true,
         ".vscode":true,
         ".idea":true
-    }
-  }
+    },
+    "vsicons.presets.angular": false
+}
