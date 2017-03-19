@@ -20,11 +20,9 @@ export default {
         path:  './settings/scripts/',
         filename: '[name].js'
     },
-
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
-        new ExtractTextPlugin('mailgun-for-wp.css'),
         new webpack.optimize.UglifyJsPlugin()
     ],
     module: {
