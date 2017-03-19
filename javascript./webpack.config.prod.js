@@ -11,29 +11,26 @@ console.log("Inside webpack.config.prod.js");
 /* eslint-enable no-console */
 
 export default {
-    debug: true,
     devtool: 'source-map',
-    noInfo: false,
-    entry: './javascript/src/index',
+    entry: {
+        generalsettings: './javascript/src/index',
+        abc: './javascript/src/index'
+    },
     target: 'web',
     output: {
-        path: __dirname + '/settings/scripts', // Note: Physical files are only output by the production build task `npm run build`.
-        publicPath: '/scripts/',
-        filename: 'mailgun-for-wp.js'
+        path:  './settings/scripts/',
+        filename: '[name].js'
     },
-    devServer: {
-        contentBase: './dist'
-    },
+
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new ExtractTextPlugin('mailgun-for-wp.css'),
-        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()
     ],
     module: {
         loaders: [
-            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
+            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader']},
             {test: /(\.css)$/, loader: ExtractTextPlugin.extract("css?sourceMap")},
             {test: /\.less$/, loader: "style-loader!css-loader!less-loader"},
             {test: /\.(jpe?g|png|gif|svg)$/i, loaders: ['file?hash=sha512&digest=hex&name=[hash].[ext]','image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']},
