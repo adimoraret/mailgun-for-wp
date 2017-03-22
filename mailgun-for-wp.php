@@ -36,7 +36,8 @@ namespace MailGunApiForWp {
             'Input'                 => '/utils/wordpress/page/input/Input.php',
             'TextInput'             => '/utils/wordpress/page/input/TextInput.php',
             'RadioButton'           => '/utils/wordpress/page/input/RadioButton.php',
-            'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php'
+            'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php',
+            'StringHelper'          => '/utils/string/StringHelper.php'
         );
 
         private function __construct() {}

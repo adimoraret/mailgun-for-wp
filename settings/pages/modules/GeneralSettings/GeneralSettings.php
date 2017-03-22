@@ -22,6 +22,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             parent::__construct();
             $this->initializeInputs();
             $this->initializeButtons();
+            //add_action( 'wp_ajax_mgwp_test_configuration' , array(this, 'testConfiguration') );
         }
 
         public function getSlug() {
@@ -62,12 +63,16 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             );
         }
         private function initializeButtons() {
-            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes');
-            $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration');
+            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes', null);
+            $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration', null);
         }
 
         private function getButtons() {
             return array($this->submitButton, $this->testConfigurationButton);
+        }
+
+        public function enqueuePageScripts() {
+            wp_enqueue_script( 'ajax-script', plugins_url( '/generalsettings.js', __FILE__ ) );
         }
     }
 }

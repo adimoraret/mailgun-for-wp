@@ -6,22 +6,17 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
 
     abstract class AdminBasePage {
         protected function __construct() {
-            add_action('admin_init', array($this, 'initializePage'));
         }
 
-        public function initializePage() {
-            register_setting($this->getOptionGroup(), $this->getOptionName(), array($this, 'validateForm'));
-        }
-
-        protected function getOptionGroup() {
+        public function getOptionGroup() {
             return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
         }
 
-        protected function getOptionName() {
+        public function getOptionName() {
             return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
         }
 
-        protected function getSavedOptions() {
+        public function getSavedOptions() {
             return get_option($this->getOptionName());
         }
 
@@ -30,5 +25,6 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         protected abstract function getBrowserTitle();
         protected abstract function validateForm($formData);
         protected abstract function renderPage();
+        public abstract function enqueuePageScripts();
     }
 }

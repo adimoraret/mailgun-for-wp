@@ -2,7 +2,8 @@
  * Created by Adrian Moraret on 3/18/2017.
  */
 class AjaxRequest {
-    get(url){
+
+    post(url, contentType, data){
         let xhr = new XMLHttpRequest();
         return new Promise((resolve, reject) => {
             xhr.onreadystatechange = function () {
@@ -14,8 +15,9 @@ class AjaxRequest {
                     }
                 }
             };
-            xhr.open('GET', url);
-            xhr.send();
+            xhr.open('POST', url);
+            xhr.setRequestHeader("Content-Type", contentType);
+            xhr.send(data);
         });
     }
 }

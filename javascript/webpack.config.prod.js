@@ -13,11 +13,11 @@ console.log("Inside webpack.config.prod.js");
 export default {
     devtool: 'source-map',
     entry: {
-        generalsettings: './javascript/src/index'
+        'generalsettings/generalsettings': './javascript/src/components/generalsettings/GeneralSettings'
     },
     target: 'web',
     output: {
-        path:  './settings/scripts/',
+        path:  './settings/pages/modules/',
         filename: '[name].js'
     },
     plugins: [

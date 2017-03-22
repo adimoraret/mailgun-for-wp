@@ -26,12 +26,10 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
             return 'Email Tracking';
         }
         public function getInputs(){
-            return array($this->trackLinks
-                ,$this->trackOpenEmail
-            );
+            return array($this->trackLinks, $this->trackOpenEmail);
         }
         public function renderPage(){
-            include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_tracking.php';
+            include_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_tracking.php';
         }
 
         private function initializeInputs() {
@@ -44,11 +42,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
         }
 
         private function initializeButtons() {
-            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes');
+            $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes', null);
         }
 
         private function getButtons() {
             return array($this->submitButton);
         }
+
+        public function enqueuePageScripts() {}
     }
 }

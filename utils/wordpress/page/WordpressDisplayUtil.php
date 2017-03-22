@@ -16,14 +16,32 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                     } ?>
                 </tbody>
             </table>
-            <?php foreach ($buttons as $button){ ?>
-                <input type="<?php echo $button->getType();?>"
+            <?php self::displayButtons($buttons); ?>
+        <?php }
+
+        private static function displayButtons($buttons){
+            foreach ($buttons as $button) {
+                self::displayButton($button);
+            }
+        }
+
+        private static function displayButton($button){ ?>
+            <input type="<?php echo $button->getType();?>"
                    name="<?php echo $button->getName();?>"
                    id="<?php echo $button->getId();?>"
                    class="<?php echo $button->getClassName();?>"
-                   value="<?php _e($button->getValue(), MailGunApiForWp::PLUGIN_SLUG);?>"/>
-            <?php } ?>
-        <?php }
+                   value="<?php _e($button->getValue(), MailGunApiForWp::PLUGIN_SLUG);?>"
+                    <?php echo self::generateOnClickHtmlAttribute($button); ?>/>
+            <?php
+        }
+
+        private static function generateOnClickHtmlAttribute($button){
+            $onClickValue = $button->getOnClick();
+            if ($onClickValue == null){
+                return '';
+            }
+            return 'onclick="' . $button->getOnClick() . '"';
+        }
 
         private static function displayField($input, $optionName, $dbValue) {
             if ($input instanceof RadioButtonGroup){
