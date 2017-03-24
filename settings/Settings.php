@@ -14,21 +14,12 @@ namespace MailGunApiForWp\Settings {
             $this->pages = array(new GeneralSettings(),new Tracking());
             add_action('admin_init', array($this, 'initializePage'));
             add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
-            add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration') );
-        }
-
-        public function testConfiguration(){
-            wp_send_json_success(
-                array(
-                    'message' => 'Email was sent successfull'
-                )
-            );
-            wp_die();
         }
 
         public function initializePage(){
             foreach ($this->pages as $page) {
                 register_setting($page->getOptionGroup(), $page->getOptionName(), array($page, 'validateForm'));
+                $page->enqueueAjaxCalls();
             }
         }
 

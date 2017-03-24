@@ -49,6 +49,8 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
             return array($this->submitButton);
         }
 
+        public function enqueueAjaxCalls(){}
+
         public function enqueuePageScripts() {}
     }
 }

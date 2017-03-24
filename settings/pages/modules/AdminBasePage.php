@@ -26,5 +26,6 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         protected abstract function validateForm($formData);
         protected abstract function renderPage();
         public abstract function enqueuePageScripts();
+        public abstract function enqueueAjaxCalls();
     }
 }

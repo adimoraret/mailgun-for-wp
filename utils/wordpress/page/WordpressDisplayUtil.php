@@ -115,6 +115,8 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
             <th scope="row"><label for="<?php echo $inputId; ?>"><?php echo $text; echo $isRequired ? '*' : ''; ?></label></th>
         <?php }
 
+        public static function displayLabel($status) {?>
+            <label id="<?php echo $status; ?>"></label>
+        <?php }
     }
 }
-?>

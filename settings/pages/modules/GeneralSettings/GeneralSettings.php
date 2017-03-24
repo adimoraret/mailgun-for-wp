@@ -22,7 +22,6 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             parent::__construct();
             $this->initializeInputs();
             $this->initializeButtons();
-            //add_action( 'wp_ajax_mgwp_test_configuration' , array(this, 'testConfiguration') );
         }
 
         public function getSlug() {
@@ -74,5 +73,19 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         public function enqueuePageScripts() {
             wp_enqueue_script( 'ajax-script', plugins_url( '/generalsettings.js', __FILE__ ) );
         }
+
+        public function enqueueAjaxCalls(){
+            add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration') );
+        }
+
+        public function testConfiguration(){
+            wp_send_json_success(
+                array(
+                    'message' => 'Email was sent successfull'
+                )
+            );
+            wp_die();
+        }
+
     }
 }

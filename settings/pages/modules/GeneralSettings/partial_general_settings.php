@@ -13,6 +13,7 @@
             $buttons = $this->getButtons();
             $optionName = $this->getOptionName();
             WordpressDisplayUtil::displayFormTable($savedOptions, $inputs, $optionName, $buttons);
+            WordpressDisplayUtil::displayLabel("status");
         ?>
     </form>
 </div>

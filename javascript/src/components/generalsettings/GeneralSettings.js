@@ -9,25 +9,15 @@ export class GeneralSettings{
         this.sendTestEmail = this.sendTestEmail.bind(this);
     }
 
-    sendTestEmail1(){
-        console.log("ajaxReuest: ", this.ajaxRequest, " ajaxUrl: ", this.ajaxUrl);
-        this.ajaxRequest.get(this.ajaxUrl)
-            .then(function (data) {
-                console.log(data);
-            })
-            .catch(function (error) {
-                console.log("Error:", error);
-            });
-    }
-
     sendTestEmail(){
         const data = "action=mgwp_test_configuration";
         this.ajaxRequest.post(this.ajaxUrl, "application/x-www-form-urlencoded", data)
-            .then(function (data) {
-                console.log(data);
+            .then(function (response) {
+                document.getElementById("status").innerHTML = response.data.message;
             })
             .catch(function (error) {
-                console.log("Error:", error);
+                document.getElementById("status").innerHTML = "Error";
+                console.log(error);
             });
     }
 }
