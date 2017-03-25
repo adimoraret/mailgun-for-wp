@@ -14,6 +14,7 @@
             $optionName = $this->getOptionName();
             WordpressDisplayUtil::displayFormTable($savedOptions, $inputs, $optionName, $buttons);
             WordpressDisplayUtil::displayLabel("status");
+            WordpressDisplayUtil::displaySpinner("spinner");
         ?>
     </form>
 </div>

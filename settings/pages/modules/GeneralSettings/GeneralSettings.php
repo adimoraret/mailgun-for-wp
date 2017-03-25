@@ -79,6 +79,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function testConfiguration(){
+            sleep(2);
             wp_send_json_success(
                 array(
                     'message' => 'Email was sent successfull'

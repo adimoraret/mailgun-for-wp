@@ -1,5 +1,6 @@
 import AjaxRequest from "../../utils/ajax/AjaxRequest";
 import {getWordpressAjaxUrl} from "../../utils/wordpress/WordpressHelper";
+import {Spinner} from "../../utils/spinner/Spinner";
 
 export class GeneralSettings{
 
@@ -11,12 +12,18 @@ export class GeneralSettings{
 
     sendTestEmail(){
         const data = "action=mgwp_test_configuration";
+        const spinner = new Spinner('spinner');
+        const statusMessageElement = document.getElementById("status");
+        statusMessageElement.innerHTML = "";
+        spinner.showSpinner();
         this.ajaxRequest.post(this.ajaxUrl, "application/x-www-form-urlencoded", data)
             .then(function (response) {
-                document.getElementById("status").innerHTML = response.data.message;
+                spinner.hideSpinner();
+                statusMessageElement.innerHTML = response.data.message;
             })
             .catch(function (error) {
-                document.getElementById("status").innerHTML = "Error";
+                spinner.hideSpinner();
+                statusMessageElement.innerHTML = "Error";
                 console.log(error);
             });
     }
