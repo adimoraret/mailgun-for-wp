@@ -115,12 +115,18 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
             <th scope="row"><label for="<?php echo $inputId; ?>"><?php echo $text; echo $isRequired ? '*' : ''; ?></label></th>
         <?php }
 
-        public static function displayLabel($labelId) {?>
-            <label id="<?php echo $labelId; ?>"></label>
+        public static function displaySpan($labelId) {?>
+            <span id="<?php echo $labelId; ?>"></span>
         <?php }
 
         public static function displaySpinner($spinnerId) { ?>
-            <span id="<?php echo $spinnerId; ?>" class="spinner"></span>
+            <div id="<?php echo $spinnerId; ?>" class="hidden">
+                <div class="spinner-container">
+                    <section>
+                        <div class="sk-rotating-plane"></div>
+                    </section>
+                </div>
+            </div>
         <?php }
     }
 }

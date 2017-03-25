@@ -26,7 +26,7 @@ namespace MailGunApiForWp\Settings {
         public function enqueueScripts($hook){
             $activePage = $this->getAdminPageByHook($hook);
             if ($activePage != null) {
-                $activePage->enqueuePageScripts();
+                $activePage->enqueuePageScriptsAndStyles();
             }
         }
 

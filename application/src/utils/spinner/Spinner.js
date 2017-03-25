@@ -10,10 +10,10 @@ export class Spinner{
     }
 
     showSpinner(){
-        this.spinnerElement.classList.toggle('is-active', true);
+        this.spinnerElement.classList.toggle('hidden', false);
     }
 
     hideSpinner(){
-        this.spinnerElement.classList.toggle('is-active', false);
+        this.spinnerElement.classList.toggle('hidden', true);
     }
 }

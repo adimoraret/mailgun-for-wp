@@ -51,6 +51,6 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
 
         public function enqueueAjaxCalls(){}
 
-        public function enqueuePageScripts() {}
+        public function enqueuePageScriptsAndStyles() {}
     }
 }

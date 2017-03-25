@@ -2,3 +2,4 @@
 .idea
 node_modules
 settings/pages/modules/**/*.js
+settings/pages/modules/**/*.css

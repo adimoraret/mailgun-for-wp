@@ -27,15 +27,17 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         public function getSlug() {
             return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-1';
         }
+
         public function getTitle() {
             return 'MailGun 4 WP';
         }
+
         public function getBrowserTitle() {
             return 'MailGun for Wordpress';
         }
 
         public function renderPage() {
-            include_once  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_general_settings.php';
+            include_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'partial_general_settings.php';
         }
 
         public function validateForm($formData) {
@@ -61,6 +63,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
                 $this->fromName
             );
         }
+
         private function initializeButtons() {
             $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes', null);
             $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration', null);
@@ -70,15 +73,16 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             return array($this->submitButton, $this->testConfigurationButton);
         }
 
-        public function enqueuePageScripts() {
-            wp_enqueue_script( 'ajax-script', plugins_url( '/generalsettings.js', __FILE__ ) );
+        public function enqueuePageScriptsAndStyles() {
+            wp_enqueue_script('mgwp-general-settings-script', plugins_url('/generalsettings.js', __FILE__));
+            wp_enqueue_style('mgwp-general-settings-style', plugins_url('/generalsettings.css', __FILE__));
         }
 
-        public function enqueueAjaxCalls(){
-            add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration') );
+        public function enqueueAjaxCalls() {
+            add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration'));
         }
 
-        public function testConfiguration(){
+        public function testConfiguration() {
             sleep(2);
             wp_send_json_success(
                 array(
@@ -87,6 +91,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
             );
             wp_die();
         }
+
 
     }
 }
