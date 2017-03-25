@@ -13,7 +13,7 @@ console.log("Inside webpack.config.prod.js");
 export default {
     devtool: 'source-map',
     entry: {
-        'generalsettings/generalsettings': './javascript/src/components/generalsettings/GeneralSettings'
+        'generalsettings/generalsettings': './application/src/components/generalsettings/GeneralSettings'
     },
     target: 'web',
     output: {

@@ -6,9 +6,9 @@
   "scripts": {
     "sync": "babel-node node_tools/sync-plugin.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-js": "babel-node javascript/tools/devServer",
+    "start-js": "babel-node application/tools/devServer",
     "start-js-dev": "npm-run-all start-dev-server",
-    "deploy-js": "babel-node javascript/tools/deploy.js"
+    "deploy-js": "babel-node application/tools/deploy.js"
   },
   "author": "Adrian Moraret",
   "license": "ISC",
