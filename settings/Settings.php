@@ -12,14 +12,20 @@ namespace MailGunApiForWp\Settings {
 
         public function __construct() {
             $this->pages = array(new GeneralSettings(),new Tracking());
-            add_action('admin_init', array($this, 'initializePage'));
+            add_action('admin_init', array($this, 'initializePages'));
             add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
         }
 
-        public function initializePage(){
+        public function initializePages(){
             foreach ($this->pages as $page) {
-                register_setting($page->getOptionGroup(), $page->getOptionName(), array($page, 'validateForm'));
-                $page->enqueueAjaxCalls();
+                $this->initializeForms($page->getForms());
+            }
+        }
+
+        private function initializeForms($forms){
+            foreach ($forms as $form) {
+                register_setting($form->getOptionGroup(), $form->getOptionName(), array($form, 'validateForm'));
+                $form->enqueueAjaxCalls();
             }
         }
 

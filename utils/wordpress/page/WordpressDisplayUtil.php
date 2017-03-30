@@ -4,6 +4,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
     use MailGunApiForWp\MailGunApiForWp;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\Input;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
+    use MailGunApiForWp\Utils\Wordpress\WordpressUtil;
 
     final class WordpressDisplayUtil {
     
@@ -127,6 +128,21 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                     </section>
                 </div>
             </div>
+        <?php }
+
+        public static function displayForm($form) { ?>
+            <form method="POST" action="<?php echo WordpressUtil::getFormAction(); ?>">
+                <?php
+                settings_fields($form->getOptionGroup());
+                $savedOptions = $form->getSavedOptions();
+                $inputs = $form->getInputs();
+                $buttons = $form->getButtons();
+                $optionName = $form->getOptionName();
+                self::displayFormTable($savedOptions, $inputs, $optionName, $buttons);
+                self::displaySpan("status");
+                self::displaySpinner("spinner");
+                ?>
+            </form>
         <?php }
     }
 }

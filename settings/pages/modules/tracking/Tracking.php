@@ -37,20 +37,19 @@ namespace MailGunApiForWp\Settings\Pages\Modules\Tracking {
             $this->trackOpenEmail = new Input('Track Open Email', 'trackopen', 'trackopen', 'checkbox', 'Track open emails', false, 1);
         }
 
-        public function validateForm($formData) {
-            return $formData;
-        }
-
         private function initializeButtons() {
             $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes', null);
-        }
-
-        private function getButtons() {
-            return array($this->submitButton);
         }
 
         public function enqueueAjaxCalls(){}
 
         public function enqueuePageScriptsAndStyles() {}
+
+        public function getForms() {
+            return array();
+        }
+
+        protected function initializeForms() {
+        }
     }
 }

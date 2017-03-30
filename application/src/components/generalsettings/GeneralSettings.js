@@ -2,6 +2,7 @@ import AjaxRequest from "../../utils/ajax/AjaxRequest";
 import {getWordpressAjaxUrl} from "../../utils/wordpress/WordpressHelper";
 import {Spinner} from "../../utils/spinner/Spinner";
 import '../../../sass/utils/spinner.scss';
+import '../../../sass/layout/three-columns-layout.scss';
 
 export class GeneralSettings{
 

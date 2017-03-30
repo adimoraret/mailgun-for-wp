@@ -1,0 +1,6 @@
+@import "main";
+@import "widget";
+@import url(../wordpress/form.scss);
+
+#ctrContent section aside { width: 33%; float: left; text-align: center; }
+#ctrContent section aside .widget { margin: 15px; }

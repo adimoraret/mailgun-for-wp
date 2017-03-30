@@ -2,30 +2,18 @@
 
 namespace MailGunApiForWp\Settings\Pages\Modules {
 
-    use MailGunApiForWp\MailGunApiForWp;
-
     abstract class AdminBasePage {
         protected function __construct() {
+            $this->initializeForms();
         }
 
-        public function getOptionGroup() {
-            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
-        }
-
-        public function getOptionName() {
-            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
-        }
-
-        public function getSavedOptions() {
-            return get_option($this->getOptionName());
-        }
+        public abstract function getForms();
+        public abstract function enqueuePageScriptsAndStyles();
 
         protected abstract function getSlug();
         protected abstract function getTitle();
         protected abstract function getBrowserTitle();
-        protected abstract function validateForm($formData);
         protected abstract function renderPage();
-        public abstract function enqueuePageScriptsAndStyles();
-        public abstract function enqueueAjaxCalls();
+        protected abstract function initializeForms();
     }
 }

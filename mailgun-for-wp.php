@@ -26,8 +26,11 @@ namespace MailGunApiForWp {
 
         private static $classes = array(
             'Settings'              => '/settings/Settings.php',
+            'AdminBaseForm'         => '/settings/pages/modules/AdminBaseForm.php',
             'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
+            'HttpSettingsForm'      => '/settings/pages/modules/generalsettings/HttpSettingsForm.php',
+            'SmtpSettingsForm'      => '/settings/pages/modules/generalsettings/SmtpSettingsForm.php',
             'Tracking'              => '/settings/pages/modules/tracking/Tracking.php',
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
             'WordpressUtil'         => '/utils/wordpress/WordpressUtil.php',
