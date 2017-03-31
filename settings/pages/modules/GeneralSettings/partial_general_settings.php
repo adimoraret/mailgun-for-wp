@@ -9,7 +9,10 @@
         foreach ($this->getForms() as $form) { ?>
         <aside>
             <div class="widget">
-                <?php WordpressDisplayUtil::displayForm($form); ?>
+                <header><span>Http Settings</span></header>
+                <div class="widget-body">
+                    <?php WordpressDisplayUtil::displayForm($form); ?>
+                </div>
             </div>
         </aside>
         <?php } ?>

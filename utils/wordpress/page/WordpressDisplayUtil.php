@@ -66,7 +66,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                 <?php self::displayLabelHeader($input->getId(), $input->getLabel(), $input->getIsRequired()); ?>
                 <td>
                     <input type="<?php echo $input->getType();?>"
-                        class="regular-text"
+                        class="text"
                         name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
                         id="<?php echo $input->getId();?>"
                         value="<?php echo $dbValue;?>"
@@ -82,7 +82,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                 <?php self::displayLabelHeader($input->getId(), $input->getLabel(), $input->getIsRequired()); ?>
                 <td>
                     <input type="checkbox"
-                       class="regular-text"
+                       class="text"
                        name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
                        id="<?php echo $input->getId();?>"
                        value="<?php echo $input->getValue();?>"
