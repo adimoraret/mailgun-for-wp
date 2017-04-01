@@ -1,3 +1,5 @@
-#ctrContent { padding: 0; margin: 0; max-width: 1400px }
+$screenMaxWidth: 1400px;
+
+#ctrContent { padding: 0; margin: 0; max-width: $screenMaxWidth }
 #ctrContent section { padding: 0}
 #ctrContent section::after { content: ''; display: block; clear: both; }

@@ -1,13 +1,14 @@
 #ctrContent aside .widget {
-  height: 334px;
   background-color: #fff;
   border: 1px solid #a0aeb3;
+  width: 95%;
+  height: 100%;
 }
 
 #ctrContent section aside .widget header {
   background-color: #cbd2d5;
-  border: 1px solid #a0aeb3;
-  height: 34px;
+  border-bottom: 1px solid #a0aeb3;
+  height: 10%;
 }
 
 #ctrContent section aside .widget header span{
@@ -19,7 +20,7 @@
 }
 
 #ctrContent section aside .widget-body {
-  height: 300px;
-  border-width: 0px 1px 2px 1px;
+  height: 90%;
+  border-width: 0px 1px 1px 1px;
   border-color: #ccc;
 }
