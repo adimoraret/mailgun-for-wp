@@ -119,7 +119,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
         <?php }
 
         public static function displaySpan($labelId) {?>
-            <span id="<?php echo $labelId; ?>"></span>
+            <div id="<?php echo $labelId; ?>"></div>
         <?php }
 
         public static function displaySpinner($spinnerId) { ?>

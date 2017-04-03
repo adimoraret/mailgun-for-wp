@@ -1,7 +1,8 @@
 import AjaxRequest from "../../utils/ajax/AjaxRequest";
 import {getWordpressAjaxUrl} from "../../utils/wordpress/WordpressHelper";
-import {Spinner} from "../../utils/spinner/Spinner";
+import Spinner from "../../utils/spinner/Spinner";
 import '../../../sass/components/generalsettings/generalsettings.scss';
+import Notification from '../../utils/notification/Notification';
 
 export class GeneralSettings{
 
@@ -20,7 +21,12 @@ export class GeneralSettings{
         this.ajaxRequest.post(this.ajaxUrl, "application/x-www-form-urlencoded", data)
             .then(function (response) {
                 spinner.hideSpinner();
-                statusMessageElement.innerHTML = response.data.message;
+                let options = {
+                    container: document.getElementsByClassName("widget-body")[0],
+                    message: response.data.message
+                };
+                const notification = new Notification(options);
+                notification.render();
             })
             .catch(function (error) {
                 spinner.hideSpinner();

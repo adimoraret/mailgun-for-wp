@@ -1,7 +1,7 @@
 /**
  * Created by Adrian Moraret on 3/23/2017.
  */
-export class Spinner{
+export default class Spinner{
 
     constructor(htmlSpinnerId){
         this.spinnerElement = document.getElementById(htmlSpinnerId);
