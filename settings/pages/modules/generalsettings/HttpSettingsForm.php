@@ -19,7 +19,6 @@ class HttpSettingsForm extends AdminBaseForm {
     private $fromAddress;
     private $fromName;
     private $submitButton;
-    private $testConfigurationButton;
 
     public function __construct() {
         parent::__construct();
@@ -29,12 +28,16 @@ class HttpSettingsForm extends AdminBaseForm {
         return "mgwp-http-settings";
     }
 
+    public function getName() {
+        return "Http settings";
+    }
+
     public function getInputs() {
         return array($this->domainName, $this->apiKey, $this->fromAddress, $this->fromName);
     }
 
     public function getButtons() {
-        return array($this->submitButton, $this->testConfigurationButton);
+        return array($this->submitButton);
     }
 
     public function validateForm($formData) {
@@ -56,8 +59,7 @@ class HttpSettingsForm extends AdminBaseForm {
     }
 
     protected function initializeButtons() {
-        $this->submitButton = new Button('button', 'saveHttpSettings', 'saveHttpSettings', 'button button-primary', 'Save changes', null);
-        $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration', null);
+        $this->submitButton = new Button('button', 'saveHttpSettings', 'saveHttpSettings', 'Save changes', null);
     }
 
     protected function initializeInputs() {

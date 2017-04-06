@@ -19,7 +19,6 @@ class SmtpSettingsForm extends AdminBaseForm {
     private $username;
     private $password;
     private $submitButton;
-    private $testConfigurationButton;
 
     function __construct() {
         parent::__construct();
@@ -27,6 +26,10 @@ class SmtpSettingsForm extends AdminBaseForm {
 
     public function getId() {
         return "mgwp-smtp-settings";
+    }
+
+    public function getName() {
+        return "Smtp settings";
     }
 
     public function enqueueAjaxCalls() {
@@ -44,7 +47,7 @@ class SmtpSettingsForm extends AdminBaseForm {
     }
 
     public function getButtons() {
-        return array($this->submitButton, $this->testConfigurationButton);
+        return array($this->submitButton);
     }
 
     public function getInputs() {
@@ -60,8 +63,7 @@ class SmtpSettingsForm extends AdminBaseForm {
     }
 
     protected function initializeButtons() {
-        $this->submitButton = new Button('submit', 'submit', 'submit2', 'button button-primary', 'Save changes', null);
-        $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration2', '', 'Test Configuration', null);
+        $this->submitButton = new Button('button', 'saveSmtpSettings', 'saveSmtpSettings', 'Save changes', null);
     }
 
     protected function initializeInputs() {

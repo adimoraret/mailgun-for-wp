@@ -18,7 +18,8 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                 $optionName = $form->getOptionName();
                 self::displayFormContent($savedOptions, $inputs, $optionName, $buttons);
                 self::displaySpan("status");
-                self::displaySpinner("spinner");
+                $spinnerId = $form->getId() . '-spinner';
+                self::displaySpinner($spinnerId);
                 ?>
             </form>
         <?php }

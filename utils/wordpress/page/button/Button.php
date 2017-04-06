@@ -6,15 +6,13 @@ class Button {
     private $type;
     private $name;
     private $id;
-    private $className;
     private $value;
     private $onClick;
 
-    function __construct($type, $name, $id, $className, $value, $onClick) {
+    function __construct($type, $name, $id, $value, $onClick) {
         $this->type = $type;
         $this->name = $name;
         $this->id = $id;
-        $this->className = $className;
         $this->value = $value;
         $this->onClick = $onClick;
     }
@@ -29,10 +27,6 @@ class Button {
 
     public function getId() {
         return $this->id;
-    }
-
-    public function getClassName() {
-        return $this->className;
     }
 
     public function getValue() {

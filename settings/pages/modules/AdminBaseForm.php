@@ -30,6 +30,7 @@ abstract class AdminBaseForm {
     }
 
     public abstract function getId();
+    public abstract function getName();
     public abstract function enqueueAjaxCalls();
     public abstract function getButtons();
     public abstract function getInputs();
