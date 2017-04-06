@@ -25,6 +25,10 @@ class HttpSettingsForm extends AdminBaseForm {
         parent::__construct();
     }
 
+    public function getId() {
+        return "mgwp-http-settings";
+    }
+
     public function getInputs() {
         return array($this->domainName, $this->apiKey, $this->fromAddress, $this->fromName);
     }
@@ -45,14 +49,14 @@ class HttpSettingsForm extends AdminBaseForm {
         sleep(2);
         wp_send_json_success(
             array(
-                'message' => 'Email was sent successfull'
+                'message' => 'Email was sent successfully'
             )
         );
         wp_die();
     }
 
     protected function initializeButtons() {
-        $this->submitButton = new Button('submit', 'submit', 'submit', 'button button-primary', 'Save changes', null);
+        $this->submitButton = new Button('button', 'saveHttpSettings', 'saveHttpSettings', 'button button-primary', 'Save changes', null);
         $this->testConfigurationButton = new Button('button', 'testconfiguration', 'testconfiguration', '', 'Test Configuration', null);
     }
 

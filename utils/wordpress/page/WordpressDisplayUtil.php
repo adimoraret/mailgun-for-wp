@@ -9,7 +9,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
     final class WordpressDisplayUtil {
 
         public static function displayForm($form) { ?>
-            <form method="POST" action="<?php echo WordpressUtil::getFormAction(); ?>">
+            <form method="POST" action="<?php echo WordpressUtil::getFormAction(); ?>" id="<?php echo $form->getId();?>">
                 <?php
                 settings_fields($form->getOptionGroup());
                 $savedOptions = $form->getSavedOptions();

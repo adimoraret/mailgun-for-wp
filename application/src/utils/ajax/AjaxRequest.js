@@ -3,20 +3,24 @@
  */
 class AjaxRequest {
 
-    post(url, contentType, data){
+    post(url, data){
         let xhr = new XMLHttpRequest();
         return new Promise((resolve, reject) => {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        resolve(JSON.parse(xhr.responseText));
+                        try{
+                            resolve(JSON.parse(xhr.responseText));
+                        }
+                        catch(exception){
+                            resolve("");
+                        }
                     } else {
                         reject(xhr.responseText);
                     }
                 }
             };
             xhr.open('POST', url);
-            xhr.setRequestHeader("Content-Type", contentType);
             xhr.send(data);
         });
     }

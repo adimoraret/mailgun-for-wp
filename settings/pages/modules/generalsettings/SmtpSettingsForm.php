@@ -25,6 +25,10 @@ class SmtpSettingsForm extends AdminBaseForm {
         parent::__construct();
     }
 
+    public function getId() {
+        return "mgwp-smtp-settings";
+    }
+
     public function enqueueAjaxCalls() {
         add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration'));
     }

@@ -29,6 +29,7 @@ abstract class AdminBaseForm {
         return get_option($this->getOptionName());
     }
 
+    public abstract function getId();
     public abstract function enqueueAjaxCalls();
     public abstract function getButtons();
     public abstract function getInputs();
