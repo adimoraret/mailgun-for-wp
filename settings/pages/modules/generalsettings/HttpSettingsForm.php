@@ -45,17 +45,6 @@ class HttpSettingsForm extends AdminBaseForm {
     }
 
     public function enqueueAjaxCalls() {
-        add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration'));
-    }
-
-    public function testConfiguration() {
-        sleep(2);
-        wp_send_json_success(
-            array(
-                'message' => 'Email was sent successfully'
-            )
-        );
-        wp_die();
     }
 
     protected function initializeButtons() {
@@ -63,10 +52,10 @@ class HttpSettingsForm extends AdminBaseForm {
     }
 
     protected function initializeInputs() {
-        $this->domainName = new TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', true, '');
-        $this->apiKey = new TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', true, '');
-        $this->fromAddress = new TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', true, '');
-        $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', true, '');
+        $this->domainName = new TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', '');
+        $this->apiKey = new TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', '');
+        $this->fromAddress = new TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', '');
+        $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', '');
     }
 
     protected function getSlug() {

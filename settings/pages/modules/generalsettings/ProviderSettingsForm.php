@@ -28,7 +28,6 @@ class ProviderSettingsForm extends AdminBaseForm{
     }
 
     public function enqueueAjaxCalls() {
-        add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration'));
     }
 
     public function getButtons() {
@@ -40,7 +39,7 @@ class ProviderSettingsForm extends AdminBaseForm{
     }
 
     public function validateForm($formData) {
-        // TODO: Implement validateForm() method.
+        return $formData;
     }
 
     protected function getSlug() {
@@ -49,24 +48,13 @@ class ProviderSettingsForm extends AdminBaseForm{
 
     protected function initializeInputs() {
         $radioButtons = array(
-            new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, true, 0),
-            new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, true, 1)
+            new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, '0'),
+            new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, '1')
         );
         $this->selectedProvider = new RadioButtonGroup('Sending method', $radioButtons);
     }
 
     protected function initializeButtons() {
         $this->submitButton = new Button('button', 'saveProviderSettings', 'saveProviderSettings', 'Save changes', null);
-    }
-
-
-    public function testConfiguration() {
-        sleep(2);
-        wp_send_json_success(
-            array(
-                'message' => 'Email was sent successful'
-            )
-        );
-        wp_die();
     }
 }

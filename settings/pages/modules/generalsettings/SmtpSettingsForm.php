@@ -55,8 +55,8 @@ class SmtpSettingsForm extends AdminBaseForm {
     }
 
     protected function initializeInputs() {
-        $this->domainName = new TextInput('Domain Name', 'domainname2', 'domainname2', 'text', 'Mailgun domain name', 'Your mailgun domain name', true, '');
-        $this->username = new TextInput('Username', 'username', 'username', 'text', 'Mailgun smtp username', 'Your mailgun smtp username', true, '');
-        $this->password = new TextInput('Password', 'password', 'password', 'password', 'Mailgun smtp passowrd', 'Your mailgun smtp password', true, '');
+        $this->domainName = new TextInput('Domain Name', 'domainname2', 'domainname2', 'text', 'Mailgun domain name', 'Your mailgun domain name', '');
+        $this->username = new TextInput('Username', 'username', 'username', 'text', 'Mailgun smtp username', 'Your mailgun smtp username', '');
+        $this->password = new TextInput('Password', 'password', 'password', 'password', 'Mailgun smtp passowrd', 'Your mailgun smtp password', '');
     }
 }

@@ -3,8 +3,8 @@ namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
     class RadioButton extends Input{
         private $isChecked;
         
-        public function __construct($label, $name, $id, $type, $description, $isChecked, $isRequired, $value) {
-           parent::__construct($label, $name, $id, $type, $description, $isRequired, $value);
+        public function __construct($label, $name, $id, $type, $description, $isChecked, $value) {
+           parent::__construct($label, $name, $id, $type, $description, $value);
             $this->isChecked = $isChecked;
         }
 

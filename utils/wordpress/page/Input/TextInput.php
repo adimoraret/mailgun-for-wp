@@ -3,8 +3,8 @@ namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
     class TextInput extends Input {
         private $placeholder;
         
-        public function __construct($label, $name, $id, $type, $description, $placeholder, $isRequired, $value) {
-           parent::__construct($label, $name, $id, $type, $description, $isRequired, $value);
+        public function __construct($label, $name, $id, $type, $description, $placeholder, $value) {
+           parent::__construct($label, $name, $id, $type, $description, $value);
             $this->placeholder = $placeholder;
         }
 

@@ -76,18 +76,17 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
         }
 
         private static function displayTextInputField($input, $optionName, $dbValue) {
-            self::displayLabelHeader($input->getId(), $input->getLabel(), $input->getIsRequired()); ?>
+            self::displayLabelHeader($input->getId(), $input->getLabel()); ?>
                 <input type="<?php echo $input->getType();?>"
                     class="text"
                     name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
                     id="<?php echo $input->getId();?>"
                     value="<?php echo $dbValue;?>"
-                    placeholder="<?php echo $input->getPlaceHolder();?>"
-                    <?php echo $input->getIsRequired() ? 'required' : '';?>/>
+                    placeholder="<?php echo $input->getPlaceHolder();?>"/>
         <?php }
 
         private static function displayCheckboxField($input, $optionName, $dbValue) {
-            self::displayLabelHeader($input->getId(), $input->getLabel(), $input->getIsRequired()); ?>
+            self::displayLabelHeader($input->getId(), $input->getLabel()); ?>
                 <input type="checkbox"
                    class="text"
                    name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
@@ -100,7 +99,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
 
         private static function displayRadioButtonGroup($radioButtonGroup, $optionName, $dbValue) {
             ?>
-                <label><?php echo $radioButtonGroup->getLabel(); echo $radioButtonGroup->getIsRequired() ? '*' : '';?></label>
+                <label><?php echo $radioButtonGroup->getLabel();?></label>
                 <div class="radio-buttons-group">
                     <?php foreach($radioButtonGroup->getRadioButtons() as $radioButton){ ?>
                         <label for="<?php echo $radioButton->getId() ?>"><?php echo $radioButton->getLabel() ?></label>
@@ -108,15 +107,14 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                                name="<?php echo $optionName . '[' . $radioButton->getName() . ']';?>"
                                id="<?php echo $radioButton->getId();?>"
                                value="<?php echo $radioButton->getValue();?>"
-                            <?php echo $radioButton->getIsRequired() ? 'required' : ''?>
-                            <?php echo $dbValue == $radioButton->getValue() ? 'checked' : $radioButton->getIsChecked() ? 'checked' : ''?>/>
+                            <?php echo $dbValue === $radioButton->getValue() ? 'checked' : $radioButton->getIsChecked() ? 'checked' : ''?>/>
                     <?php }
                     ?>
                 </div>
         <?php }
 
-        private static function displayLabelHeader($inputId, $text, $isRequired) { ?>
-            <label for="<?php echo $inputId; ?>"><?php echo $text; echo $isRequired ? '*' : ''; ?></label>
+        private static function displayLabelHeader($inputId, $text) { ?>
+            <label for="<?php echo $inputId; ?>"><?php echo $text;?></label>
         <?php }
 
         public static function displaySpan($labelId) {?>

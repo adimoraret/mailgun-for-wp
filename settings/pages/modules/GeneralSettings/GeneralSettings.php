@@ -16,11 +16,11 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getSlug() {
-            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'pg-1';
+            return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . 'configuration';
         }
 
         public function getTitle() {
-            return 'MailGun 4 WP';
+            return 'Configuration';
         }
 
         public function getBrowserTitle() {

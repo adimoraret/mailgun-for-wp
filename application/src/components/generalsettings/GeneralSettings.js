@@ -10,6 +10,7 @@ export class GeneralSettings{
         this.saveSettings = this.saveSettings.bind(this);
         this.saveHttpSettings = this.saveHttpSettings.bind(this);
         this.saveSmtpSettings = this.saveSmtpSettings.bind(this);
+        this.saveProviderSettings = this.saveProviderSettings.bind(this);
     }
 
     saveHttpSettings(){
@@ -18,6 +19,10 @@ export class GeneralSettings{
 
     saveSmtpSettings(){
         this.saveSettings('mgwp-smtp-settings', 'mgwp-smtp-settings-spinner', document.getElementsByClassName("widget-body")[1]);
+    }
+
+    saveProviderSettings(){
+        this.saveSettings('mgwp-provider-settings', 'mgwp-provider-settings-spinner', document.getElementsByClassName("widget-body")[2]);
     }
 
     saveSettings(formId, spinnerId, notificationContainer){
@@ -53,5 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const generalSettings = new GeneralSettings();
     document.getElementById('saveHttpSettings').onclick = generalSettings.saveHttpSettings;
     document.getElementById('saveSmtpSettings').onclick = generalSettings.saveSmtpSettings;
+    document.getElementById('saveProviderSettings').onclick = generalSettings.saveProviderSettings;
 });
 

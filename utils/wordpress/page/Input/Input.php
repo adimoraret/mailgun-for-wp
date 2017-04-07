@@ -5,17 +5,15 @@ namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
         private $name;
         private $id;
         private $type;
-        private $isRequired;
         private $description;
         private $value;
         
-        public function __construct($label, $name, $id, $type, $description, $isRequired, $value) {
+        public function __construct($label, $name, $id, $type, $description, $value) {
             $this->label = $label;
             $this->name = $name;
             $this->id = $id;
             $this->type = $type;
             $this->description = $description;
-            $this->isRequired = $isRequired;
             $this->value = $value;
         }
 
@@ -37,10 +35,6 @@ namespace MailGunApiForWp\Utils\Wordpress\Page\Input {
 
         public function getDescription() {
             return $this->description;
-        }
-
-        public function getIsRequired() {
-            return $this->isRequired;
         }
 
         public function getValue() {
