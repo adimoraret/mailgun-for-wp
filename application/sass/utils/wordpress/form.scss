@@ -17,14 +17,16 @@
   padding-top: 7px;
 }
 
+#ctrContent .widget form .row .radio-buttons-group label{
+  width: auto;
+  text-align: left;
+  margin-left: 20px;
+}
+
 #ctrContent .widget form .row .radio-buttons-group input[type=radio] {
   width: auto;
   margin-top: 8px;
   margin-left: 5px;
-}
-
-#ctrContent .widget form .row .radio-buttons-group label{
-  width: 12.5%;
 }
 
 #ctrContent .widget form .row::after{
