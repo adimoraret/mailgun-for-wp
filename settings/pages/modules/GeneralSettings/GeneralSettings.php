@@ -3,11 +3,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
 
     use MailGunApiForWp\MailGunApiForWp;
     use MailGunApiForWp\Settings\Pages\Modules\AdminBasePage;
+    use ProviderSettingsForm;
 
     class GeneralSettings extends AdminBasePage {
 
         private $httpSettingsForm;
         private $smtpSettingsForm;
+        private $providerSettingsForm;
 
         public function __construct() {
             parent::__construct();
@@ -35,12 +37,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
         }
 
         public function getForms() {
-            return array($this->httpSettingsForm, $this->smtpSettingsForm);
+            return array($this->httpSettingsForm, $this->smtpSettingsForm, $this->providerSettingsForm);
         }
 
         protected function initializeForms() {
             $this->httpSettingsForm = new HttpSettingsForm();
             $this->smtpSettingsForm = new SmtpSettingsForm();
+            $this->providerSettingsForm = new ProviderSettingsForm();
         }
     }
 }

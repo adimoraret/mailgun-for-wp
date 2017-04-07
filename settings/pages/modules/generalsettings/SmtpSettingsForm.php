@@ -32,19 +32,7 @@ class SmtpSettingsForm extends AdminBaseForm {
         return "Smtp settings";
     }
 
-    public function enqueueAjaxCalls() {
-        add_action('wp_ajax_mgwp_test_configuration', array($this, 'testConfiguration'));
-    }
-
-    public function testConfiguration() {
-        sleep(2);
-        wp_send_json_success(
-            array(
-                'message' => 'Email was sent successful'
-            )
-        );
-        wp_die();
-    }
+    public function enqueueAjaxCalls() {}
 
     public function getButtons() {
         return array($this->submitButton);

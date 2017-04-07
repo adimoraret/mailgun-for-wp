@@ -100,8 +100,8 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
 
         private static function displayRadioButtonGroup($radioButtonGroup, $optionName, $dbValue) {
             ?>
-            <div class="rowtbd">
                 <label><?php echo $radioButtonGroup->getLabel(); echo $radioButtonGroup->getIsRequired() ? '*' : '';?></label>
+                <div class="radio-buttons-group">
                     <?php foreach($radioButtonGroup->getRadioButtons() as $radioButton){ ?>
                         <label for="<?php echo $radioButton->getId() ?>"><?php echo $radioButton->getLabel() ?></label>
                         <input type="radio"
@@ -112,7 +112,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
                             <?php echo $dbValue == $radioButton->getValue() ? 'checked' : $radioButton->getIsChecked() ? 'checked' : ''?>/>
                     <?php }
                     ?>
-            </div>
+                </div>
         <?php }
 
         private static function displayLabelHeader($inputId, $text, $isRequired) { ?>
