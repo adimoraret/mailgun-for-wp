@@ -1,8 +1,9 @@
 /**
  * Created by Adrian Moraret on 4/7/2017.
  */
-import AjaxRequest from "../../utils/ajax/AjaxRequest";
-import Spinner from "../../utils/spinner/Spinner";
+import AjaxRequest from '../../library/ajax/AjaxRequest';
+import Spinner from '../../library/spinner/Spinner';
+import Notification from '../../library/notification/Notification';
 
 export default class SettingsForm{
     constructor(){

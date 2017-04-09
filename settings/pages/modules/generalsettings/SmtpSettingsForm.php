@@ -50,6 +50,10 @@ class SmtpSettingsForm extends AdminBaseForm {
         return "smtp-settings";
     }
 
+    public function getIconClass() {
+        return "dashicons dashicons-admin-tools mirror";
+    }
+
     protected function initializeButtons() {
         $this->submitButton = new Button('button', 'saveSmtpSettings', 'saveSmtpSettings', 'Save changes', null);
     }

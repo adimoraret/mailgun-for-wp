@@ -44,6 +44,10 @@ class HttpSettingsForm extends AdminBaseForm {
         return $formData;
     }
 
+    public function getIconClass() {
+        return "dashicons dashicons-admin-tools";
+    }
+
     public function enqueueAjaxCalls() {
     }
 

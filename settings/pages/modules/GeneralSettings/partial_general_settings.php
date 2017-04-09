@@ -9,7 +9,10 @@
         foreach ($this->getForms() as $form) { ?>
         <aside>
             <div class="widget">
-                <header><span><?php echo $form->getName();?></span></header>
+                <header>
+                    <span class="<?php echo $form->getIconClass();?>"></span>
+                    <span><h2><?php echo $form->getName();?></h2></span>
+                </header>
                 <div class="widget-body">
                     <?php WordpressDisplayUtil::displayForm($form); ?>
                 </div>

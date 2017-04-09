@@ -1,8 +1,8 @@
 /**
  * Created by Adrian Moraret on 4/2/2017.
  */
-import './scss/notification.scss';
-import './scss/notification-bar.scss';
+import './notification.scss';
+import './notification-bar.scss';
 
 export default class Notification {
 

@@ -42,6 +42,10 @@ class ProviderSettingsForm extends AdminBaseForm{
         return $formData;
     }
 
+    public function getIconClass() {
+        return "dashicons dashicons-pressthis";
+    }
+
     protected function getSlug() {
         return "provider-settings";
     }

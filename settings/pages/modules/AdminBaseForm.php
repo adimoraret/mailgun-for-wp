@@ -35,6 +35,7 @@ abstract class AdminBaseForm {
     public abstract function getButtons();
     public abstract function getInputs();
     public abstract function validateForm($formData);
+    public abstract function getIconClass();
 
     protected abstract function getSlug();
     protected abstract function initializeInputs();

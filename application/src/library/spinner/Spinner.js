@@ -1,6 +1,9 @@
 /**
  * Created by Adrian Moraret on 3/23/2017.
  */
+
+import './spinner.scss';
+
 export default class Spinner{
 
     constructor(htmlSpinnerId){

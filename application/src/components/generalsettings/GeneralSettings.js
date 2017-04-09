@@ -1,4 +1,4 @@
-import '../../../sass/components/generalsettings/generalsettings.scss';
+import './generalsettings.scss';
 import SettingsForm from "../common/SettingsForm";
 
 export class GeneralSettings{
