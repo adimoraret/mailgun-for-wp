@@ -28,7 +28,7 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function getName() {
-            return "Send a test email with Mailgun";
+            return "Send message";
         }
 
         public function enqueueAjaxCalls() {

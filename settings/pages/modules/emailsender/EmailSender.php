@@ -27,7 +27,7 @@ namespace MailGunApiForWp\Settings\Pages\Modules\EmailSender {
         }
 
         public function getTitle() {
-           return 'Send Email';
+           return 'Test email';
         }
 
         public function renderPage() {

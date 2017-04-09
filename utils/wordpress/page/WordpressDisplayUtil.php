@@ -9,7 +9,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
     final class WordpressDisplayUtil {
 
         public static function displayForm($form) { ?>
-            <form method="POST" action="<?php echo WordpressUtil::getFormAction(); ?>" id="<?php echo $form->getId();?>">
+            <form method="POST" autocomplete="off" action="<?php echo WordpressUtil::getFormAction(); ?>" id="<?php echo $form->getId();?>">
                 <?php
                 settings_fields($form->getOptionGroup());
                 $savedOptions = $form->getSavedOptions();
@@ -79,6 +79,7 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
             self::displayLabelHeader($input->getId(), $input->getLabel()); ?>
                 <input type="<?php echo $input->getType();?>"
                     class="text"
+                    autocomplete="off"
                     name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
                     id="<?php echo $input->getId();?>"
                     value="<?php echo $dbValue;?>"
