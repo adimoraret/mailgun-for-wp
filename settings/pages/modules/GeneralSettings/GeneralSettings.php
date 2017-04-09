@@ -3,7 +3,6 @@ namespace MailGunApiForWp\Settings\Pages\Modules\GeneralSettings {
 
     use MailGunApiForWp\MailGunApiForWp;
     use MailGunApiForWp\Settings\Pages\Modules\AdminBasePage;
-    use ProviderSettingsForm;
 
     class GeneralSettings extends AdminBasePage {
 

@@ -13,7 +13,8 @@ console.log("Inside webpack.config.prod.js");
 export default {
     devtool: 'eval',
     entry: {
-        'generalsettings/generalsettings': './application/src/components/generalsettings/GeneralSettings'
+        'generalsettings/generalsettings': './application/src/components/generalsettings/GeneralSettings',
+        'emailsender/emailsender': './application/src/components/emailsender/EmailSender'
     },
     target: 'web',
     output: {

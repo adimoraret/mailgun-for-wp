@@ -1,64 +1,68 @@
 <?php
-use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
-use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
-use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButton;
-use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
 
-/**
- * Created by PhpStorm.
- * User: Adi
- * Date: 4/5/2017
- * Time: 11:30 PM
- */
-class ProviderSettingsForm extends AdminBaseForm{
+namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
-    private $submitButton;
-    private $selectedProvider;
+    use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButton;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
 
-    function __construct() {
-        parent::__construct();
-    }
+    /**
+     * Created by PhpStorm.
+     * User: Adi
+     * Date: 4/5/2017
+     * Time: 11:30 PM
+     */
+    class ProviderSettingsForm extends AdminBaseForm {
 
-    public function getId() {
-        return "mgwp-provider-settings";
-    }
+        private $submitButton;
+        private $selectedProvider;
 
-    public function getName() {
-        return "Select Mailgun send method";
-    }
+        function __construct() {
+            parent::__construct();
+        }
 
-    public function enqueueAjaxCalls() {
-    }
+        public function getId() {
+            return "mgwp-provider-settings";
+        }
 
-    public function getButtons() {
-        return array($this->submitButton);
-    }
+        public function getName() {
+            return "Select Mailgun send method";
+        }
 
-    public function getInputs() {
-        return array($this->selectedProvider);
-    }
+        public function enqueueAjaxCalls() {
+        }
 
-    public function validateForm($formData) {
-        return $formData;
-    }
+        public function getButtons() {
+            return array($this->submitButton);
+        }
 
-    public function getIconClass() {
-        return "dashicons dashicons-pressthis";
-    }
+        public function getInputs() {
+            return array($this->selectedProvider);
+        }
 
-    protected function getSlug() {
-        return "provider-settings";
-    }
+        public function validateForm($formData) {
+            return $formData;
+        }
 
-    protected function initializeInputs() {
-        $radioButtons = array(
-            new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, '0'),
-            new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, '1')
-        );
-        $this->selectedProvider = new RadioButtonGroup('Sending method', $radioButtons);
-    }
+        public function getIconClass() {
+            return "dashicons dashicons-pressthis";
+        }
 
-    protected function initializeButtons() {
-        $this->submitButton = new Button('button', 'saveProviderSettings', 'saveProviderSettings', 'Save changes', null);
+        protected function getSlug() {
+            return "provider-settings";
+        }
+
+        protected function initializeInputs() {
+            $radioButtons = array(
+                new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, '0'),
+                new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, '1')
+            );
+            $this->selectedProvider = new RadioButtonGroup('Sending method', $radioButtons);
+        }
+
+        protected function initializeButtons() {
+            $this->submitButton = new Button('button', 'saveProviderSettings', 'saveProviderSettings', 'Save changes', null);
+        }
     }
 }

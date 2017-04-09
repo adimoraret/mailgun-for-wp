@@ -32,6 +32,8 @@ namespace MailGunApiForWp {
             'HttpSettingsForm'      => '/settings/pages/modules/generalsettings/HttpSettingsForm.php',
             'SmtpSettingsForm'      => '/settings/pages/modules/generalsettings/SmtpSettingsForm.php',
             'ProviderSettingsForm'  => '/settings/pages/modules/generalsettings/ProviderSettingsForm.php',
+            'EmailSender'           => '/settings/pages/modules/emailsender/EmailSender.php',
+            'EmailSenderForm'       => '/settings/pages/modules/emailsender/EmailSenderForm.php',
             'Tracking'              => '/settings/pages/modules/tracking/Tracking.php',
             'MenuBuilder'           => '/settings/menu/MenuBuilder.php',
             'WordpressUtil'         => '/utils/wordpress/WordpressUtil.php',

@@ -2,8 +2,8 @@
 namespace MailGunApiForWp\Settings {
 
     use MailGunApiForWp\Settings\Menu\MenuBuilder;
+    use MailGunApiForWp\Settings\Pages\Modules\EmailSender\EmailSender;
     use MailGunApiForWp\Settings\Pages\Modules\GeneralSettings\GeneralSettings;
-    use MailGunApiForWp\Settings\Pages\Modules\Tracking\Tracking;
     use MailGunApiForWp\Utils\String\StringHelper;
 
     final class Settings{
@@ -11,7 +11,7 @@ namespace MailGunApiForWp\Settings {
         private $pages;
 
         public function __construct() {
-            $this->pages = array(new GeneralSettings(),new Tracking());
+            $this->pages = array(new GeneralSettings(),new EmailSender());
             add_action('admin_init', array($this, 'initializePages'));
             add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
         }
