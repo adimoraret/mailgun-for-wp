@@ -10,14 +10,17 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
+    use MailGunApiForWp\Utils\Wordpress\Page\Input\TextArea;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
 
     class EmailSenderForm extends AdminBaseForm {
 
-        private $submitButton;
+        private $sendEmailButton;
         private $toEmail;
+        private $ccEmail;
+        private $bccEmail;
+        private $subject;
         private $message;
-        private $isHtml;
 
         function __construct() {
             parent::__construct();
@@ -35,11 +38,11 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function getButtons() {
-            return array($this->submitButton);
+            return array($this->sendEmailButton);
         }
 
         public function getInputs() {
-           return array($this->toEmail, $this->message, $this->isHtml);
+           return array($this->toEmail, $this->ccEmail, $this->bccEmail, $this->subject, $this->message);
         }
 
         public function validateForm($formData) {
@@ -55,13 +58,15 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         protected function initializeInputs() {
-            $this->toEmail = new TextInput('To', 'to', 'to', 'text', 'To', 'To', '');
-            $this->isHtml = new TextInput('Is Html', 'isHtml', 'isHtml', 'text', 'Is Html', 'Is Html', '');
-            $this->message = new TextInput('Message', 'message', 'message', 'email', 'Message', 'Message', '');
+            $this->toEmail = new TextInput('To', 'to', 'to', 'email', 'To', 'To', '');
+            $this->ccEmail = new TextInput('Cc', 'cc', 'cc', 'email', 'Cc', 'Cc', '');
+            $this->bccEmail = new TextInput('Bcc', 'bcc', 'bcc', 'email', 'Bcc', 'Bcc', '');
+            $this->subject = new TextInput('Subject', 'subject', 'subject', 'text', 'Subject', 'Subject', '');
+            $this->message = new TextArea('Message', 'message', 'message', 'textarea', 'Message', 'Write your email here', '');
         }
 
         protected function initializeButtons() {
-            $this->submitButton = new Button('button', 'emailSender', 'emailSender', 'Send email', null);
+            $this->sendEmailButton = new Button('button', 'emailSender', 'emailSender', 'Send email', null);
         }
     }
 }

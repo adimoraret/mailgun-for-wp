@@ -40,9 +40,12 @@ namespace MailGunApiForWp {
             'WordpressDisplayUtil'  => '/utils/wordpress/page/WordpressDisplayUtil.php',
             'Button'                => '/utils/wordpress/page/button/Button.php',
             'Input'                 => '/utils/wordpress/page/input/Input.php',
+            'TextArea'              => '/utils/wordpress/page/input/TextArea.php',
             'TextInput'             => '/utils/wordpress/page/input/TextInput.php',
             'RadioButton'           => '/utils/wordpress/page/input/RadioButton.php',
             'RadioButtonGroup'      => '/utils/wordpress/page/input/RadioButtonGroup.php',
+            'Checkbox'              => '/utils/wordpress/page/input/Checkbox.php',
+            'CheckboxGroup'         => '/utils/wordpress/page/input/CheckboxGroup.php',
             'StringHelper'          => '/utils/string/StringHelper.php'
         );
 

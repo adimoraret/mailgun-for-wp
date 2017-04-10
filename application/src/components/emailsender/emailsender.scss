@@ -1,4 +1,30 @@
 @import "../common/main";
-@import "../../library/layout/two-columns-layout";
+@import "../../library/layout/one-column-layout";
 @import "../../library/layout/widget";
 @import "../../library/wordpress/form";
+
+#ctrContent .widget form .row label {
+  width: 20%;
+}
+
+#ctrContent .widget form .row input {
+  width: 70%;
+}
+
+#mgwp-email-sender textarea {
+  height: 300px;
+  border: 1px groove;
+}
+
+#wp-message-wrap {
+  width: 70%;
+  float: left;
+  margin-left: 20px;
+}
+
+#ctrContent .widget form .row #wp-message-wrap input {
+  width: auto;
+  float: none;
+  margin: auto;
+  padding: 0 8px 1px;
+}
