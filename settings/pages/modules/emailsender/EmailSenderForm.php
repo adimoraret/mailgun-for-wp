@@ -35,6 +35,7 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function enqueueAjaxCalls() {
+            add_action('wp_ajax_mgwp_test_configuration', array($this, 'sendEmail') );
         }
 
         public function getButtons() {
@@ -53,6 +54,16 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             return "dashicons dashicons-format-status";
         }
 
+        public function sendEmail(){
+            sleep(2);
+            wp_send_json_success(
+                array(
+                    'message' => 'Email was sent successfull'
+                )
+            );
+            wp_die();
+        }
+
         protected function getSlug() {
             return "email-sender";
         }
@@ -62,7 +73,7 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             $this->ccEmail = new TextInput('Cc', 'cc', 'cc', 'email', 'Cc', 'Cc', '');
             $this->bccEmail = new TextInput('Bcc', 'bcc', 'bcc', 'email', 'Bcc', 'Bcc', '');
             $this->subject = new TextInput('Subject', 'subject', 'subject', 'text', 'Subject', 'Subject', '');
-            $this->message = new TextArea('Message', 'message', 'message', 'textarea', 'Message', 'Write your email here', '');
+            $this->message = new TextArea('', 'message', 'message', 'textarea', 'Message', 'Write your email here', '');
         }
 
         protected function initializeButtons() {
