@@ -3,6 +3,7 @@
 namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\Settings\Pages\Modules\Options;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButton;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\RadioButtonGroup;
@@ -20,10 +21,6 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
         function __construct() {
             parent::__construct();
-        }
-
-        public function getId() {
-            return "mgwp-provider-settings";
         }
 
         public function getName() {
@@ -49,8 +46,8 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
             return "dashicons dashicons-pressthis";
         }
 
-        protected function getSlug() {
-            return "provider-settings";
+        public function getSlug() {
+            return Options::GeneralSettings_ProviderSettings;
         }
 
         protected function initializeInputs() {

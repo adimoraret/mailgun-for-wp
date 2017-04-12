@@ -6,38 +6,27 @@
  * Time: 9:20 PM
  */
 
-namespace MailGunApiForWp\settings\pages\modules;
+namespace MailGunApiForWp\settings\pages\modules {
 
+    abstract class AdminBaseForm {
+        protected function __construct() {
+            $this->initializeInputs();
+            $this->initializeButtons();
+        }
 
-use MailGunApiForWp\MailGunApiForWp;
+        public function getSavedOptions() {
+            return get_option($this->getSlug());
+        }
 
-abstract class AdminBaseForm {
-    protected function __construct() {
-        $this->initializeInputs();
-        $this->initializeButtons();
+        public abstract function getName();
+        public abstract function enqueueAjaxCalls();
+        public abstract function getButtons();
+        public abstract function getInputs();
+        public abstract function validateForm($formData);
+        public abstract function getIconClass();
+        public abstract function getSlug();
+
+        protected abstract function initializeInputs();
+        protected abstract function initializeButtons();
     }
-
-    public function getOptionGroup() {
-        return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug();
-    }
-
-    public function getOptionName() {
-        return MailGunApiForWp::PLUGIN_SHORT_CODE . '-' . $this->getSlug() . '-setting';
-    }
-
-    public function getSavedOptions() {
-        return get_option($this->getOptionName());
-    }
-
-    public abstract function getId();
-    public abstract function getName();
-    public abstract function enqueueAjaxCalls();
-    public abstract function getButtons();
-    public abstract function getInputs();
-    public abstract function validateForm($formData);
-    public abstract function getIconClass();
-
-    protected abstract function getSlug();
-    protected abstract function initializeInputs();
-    protected abstract function initializeButtons();
 }

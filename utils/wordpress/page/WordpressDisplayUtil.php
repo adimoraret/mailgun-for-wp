@@ -10,16 +10,16 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
     final class WordpressDisplayUtil {
 
         public static function displayForm($form) { ?>
-            <form method="POST" autocomplete="off" action="<?php echo WordpressUtil::getFormAction(); ?>" id="<?php echo $form->getId();?>">
+            <form method="POST" autocomplete="off" action="<?php echo WordpressUtil::getFormAction(); ?>" id="<?php echo $form->getSlug();?>">
                 <?php
-                settings_fields($form->getOptionGroup());
+                settings_fields($form->getSlug());
                 $savedOptions = $form->getSavedOptions();
                 $inputs = $form->getInputs();
                 $buttons = $form->getButtons();
-                $optionName = $form->getOptionName();
+                $optionName = $form->getSlug();
                 self::displayFormContent($savedOptions, $inputs, $optionName, $buttons);
                 self::displaySpan("status");
-                $spinnerId = $form->getId() . '-spinner';
+                $spinnerId = $form->getSlug() . '_spinner';
                 self::displaySpinner($spinnerId);
                 ?>
             </form>

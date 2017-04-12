@@ -9,6 +9,7 @@
 namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\Settings\Pages\Modules\Options;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
 
@@ -21,10 +22,6 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
         function __construct() {
             parent::__construct();
-        }
-
-        public function getId() {
-            return "mgwp-smtp-settings";
         }
 
         public function getName() {
@@ -46,8 +43,8 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
             return $formData;
         }
 
-        protected function getSlug() {
-            return "smtp-settings";
+        public function getSlug() {
+            return Options::GeneralSettings_SmtpSettings;
         }
 
         public function getIconClass() {

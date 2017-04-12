@@ -15,5 +15,13 @@ namespace MailGunApiForWp\Settings\Pages\Modules {
         protected abstract function getSlug();
         protected abstract function getBrowserTitle();
         protected abstract function initializeForms();
+
+        public function getSavedOptions(){
+            $forms = $this->getForms();
+            $savedOptions = array();
+            foreach ($forms as $form){
+                $savedOptions[$form->getId()] = $form->getSavedOptions();
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@
 namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\Settings\Pages\Modules\Options;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
 
@@ -22,10 +23,6 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
         public function __construct() {
             parent::__construct();
-        }
-
-        public function getId() {
-            return "mgwp-http-settings";
         }
 
         public function getName() {
@@ -62,8 +59,8 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
             $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', '');
         }
 
-        protected function getSlug() {
-            return "http-settings";
+        public function getSlug() {
+            return Options::GeneralSettings_HttpSettings;
         }
     }
 }

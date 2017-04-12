@@ -11,15 +11,15 @@ export class GeneralSettings{
     }
 
     saveHttpSettings(){
-        this.settingForm.saveSettings('mgwp-http-settings', 'mgwp-http-settings-spinner', document.getElementsByClassName("widget-body")[0]);
+        this.settingForm.saveSettings('mgwp_http_settings', 'mgwp_http_settings_spinner', document.getElementsByClassName("widget-body")[0]);
     }
 
     saveSmtpSettings(){
-        this.settingForm.saveSettings('mgwp-smtp-settings', 'mgwp-smtp-settings-spinner', document.getElementsByClassName("widget-body")[1]);
+        this.settingForm.saveSettings('mgwp_smtp_settings', 'mgwp_smtp_settings_spinner', document.getElementsByClassName("widget-body")[1]);
     }
 
     saveProviderSettings(){
-        this.settingForm.saveSettings('mgwp-provider-settings', 'mgwp-provider-settings-spinner', document.getElementsByClassName("widget-body")[2]);
+        this.settingForm.saveSettings('mgwp_provider_settings', 'mgwp_provider_settings_spinner', document.getElementsByClassName("widget-body")[2]);
     }
 }
 

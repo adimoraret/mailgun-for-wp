@@ -28,6 +28,7 @@ namespace MailGunApiForWp {
             'Settings'              => '/settings/Settings.php',
             'AdminBaseForm'         => '/settings/pages/modules/AdminBaseForm.php',
             'AdminBasePage'         => '/settings/pages/modules/AdminBasePage.php',
+            'Options'               => '/settings/pages/modules/Options.php',
             'GeneralSettings'       => '/settings/pages/modules/generalsettings/GeneralSettings.php',
             'HttpSettingsForm'      => '/settings/pages/modules/generalsettings/HttpSettingsForm.php',
             'SmtpSettingsForm'      => '/settings/pages/modules/generalsettings/SmtpSettingsForm.php',

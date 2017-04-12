@@ -9,6 +9,7 @@
 namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\Settings\Pages\Modules\Options;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextArea;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
@@ -24,10 +25,6 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
         function __construct() {
             parent::__construct();
-        }
-
-        public function getId() {
-            return "mgwp-email-sender";
         }
 
         public function getName() {
@@ -64,8 +61,8 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             wp_die();
         }
 
-        protected function getSlug() {
-            return "email-sender";
+        public function getSlug() {
+            return Options::EmailSenderSettings_SendSettings;
         }
 
         protected function initializeInputs() {

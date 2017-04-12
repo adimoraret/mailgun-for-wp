@@ -24,7 +24,7 @@ namespace MailGunApiForWp\Settings {
 
         private function initializeForms($forms){
             foreach ($forms as $form) {
-                register_setting($form->getOptionGroup(), $form->getOptionName(), array($form, 'validateForm'));
+                register_setting($form->getSlug(), $form->getSlug(), array($form, 'validateForm'));
                 $form->enqueueAjaxCalls();
             }
         }
