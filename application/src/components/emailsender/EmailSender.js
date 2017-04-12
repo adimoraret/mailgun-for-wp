@@ -16,7 +16,7 @@ export class EmailSender{
     sendEmail(){
         let data = new FormData();
         data.append('action','mgwp_test_configuration');
-        const spinner = new Spinner('mgwp_email_sender_spinner');
+        const spinner = new Spinner('mgwp_email_sender_settings_spinner');
         spinner.showSpinner();
         const notificationContainer = document.getElementsByClassName("widget-body")[0];
         SettingsForm.removeExistingNotifications(notificationContainer);

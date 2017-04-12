@@ -52,9 +52,11 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function sendEmail(){
+            $usedProtocol = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_ProviderSettings);
             sleep(2);
             wp_send_json_success(
                 array(
+                    'data' => $usedProtocol,
                     'message' => 'Email was sent successfull'
                 )
             );
