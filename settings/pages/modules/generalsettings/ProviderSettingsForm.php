@@ -54,7 +54,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         protected function initializeInputs() {
             $radioButtons = array(
                 new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, self::HTTP_PROVIDER),
-                new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, self::HTTP_PROVIDER)
+                new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, self::SMTP_PROVIDER)
             );
             $this->selectedProvider = new RadioButtonGroup('Sending method', $radioButtons);
         }

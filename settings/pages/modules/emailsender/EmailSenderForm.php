@@ -11,8 +11,8 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
     use MailGunApiForWp\settings\pages\modules\GeneralSettings\ProviderSettingsForm;
     use MailGunApiForWp\Settings\Pages\Modules\Options;
-    use MailGunApiForWp\Utils\MailGun\MailgunHttpProvider;
-    use MailGunApiForWp\Utils\MailGun\MailgunSmtpProvider;
+    use MailGunApiForWp\Utils\Email\Provider\Mailgun\MailgunHttpProvider;
+    use MailGunApiForWp\Utils\Email\Provider\Mailgun\MailgunSmtpProvider;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextArea;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
@@ -54,43 +54,28 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             return "dashicons dashicons-format-status";
         }
 
-        public function sendEmail() {
-           $providerSettings = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_ProviderSettings);
-            if (!$this->IsValid($providerSettings)) {
-                $this->createErrorResponse('Please select a sending method in Configuration page');
-                die();
-            }
-            $selectedProvider = $providerSettings['selectedProvider'];
-            $mailgunProvider = $this->getMailgunProvider($selectedProvider);
-            if (!$mailgunProvider->IsValid) {
-                $this->createErrorResponse($mailgunProvider->getValidationMessage());
-            }
-
+        public function sendEmail($formData) {
+            $providers = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_ProviderSettings);
+            $this->validateProviderIsSet($providers);
+            $selectedProvider = $providers['selectedProvider'];
+            $mailgunProvider = $this->getMailgunProvider($selectedProvider, $formData);
+            $this->validateProviderIsValid($mailgunProvider);
             $response = $mailgunProvider->sendEmail();
-            if (!$this->IsSent($response)) {
-                $this->createErrorResponse('Unable to send email. Mailgun response: ' . $response );
-            }
+            $this->validateEmailIsSent($response);
             $this->createSuccessResponse('Email was sent successfully');
         }
 
         private function createSuccessResponse($message) {
-            wp_send_json_success(
-                array(
-                    'message' => $message
-                )
-            );
+            wp_send_json_success(array('message' => $message));
             wp_die();
         }
 
         private function createErrorResponse($message) {
-            wp_send_json_error(
-                array(
-                    'message' => $message
-                )
-            );
+            wp_send_json_error(array('message' => $message));
+            wp_die();
         }
 
-        private function getMailgunProvider($selectedProvider){
+        private function getMailgunProvider($selectedProvider, $formData) {
             if ($selectedProvider == ProviderSettingsForm::HTTP_PROVIDER) {
                 return new MailgunHttpProvider();
             }
@@ -114,8 +99,22 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             $this->sendEmailButton = new Button('button', 'emailSender', 'emailSender', 'Send email', null);
         }
 
-        private function IsValid($providerSettings) {
-            echo $providerSettings != null && !empty($providerSettings);
+        private function validateProviderIsSet($providerSettings) {
+            if (!empty($providerSettings)) return;
+            $this->createErrorResponse('Please select a sending method in Configuration page');
+            die();
+        }
+
+        private function validateProviderIsValid($mailgunProvider) {
+            if (!$mailgunProvider->IsValid()) {
+                $this->createErrorResponse($mailgunProvider->getValidationMessage());
+            }
+        }
+
+        private function validateEmailIsSent($response) {
+            if (!$this->IsSent($response)) {
+                $this->createErrorResponse('Unable to send email. Mailgun response: ' . $response);
+            }
         }
     }
 }
