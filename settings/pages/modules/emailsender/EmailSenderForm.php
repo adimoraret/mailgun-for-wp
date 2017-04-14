@@ -9,7 +9,10 @@
 namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
+    use MailGunApiForWp\settings\pages\modules\GeneralSettings\ProviderSettingsForm;
     use MailGunApiForWp\Settings\Pages\Modules\Options;
+    use MailGunApiForWp\Utils\MailGun\MailgunHttpProvider;
+    use MailGunApiForWp\Utils\MailGun\MailgunSmtpProvider;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextArea;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
@@ -32,7 +35,7 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function enqueueAjaxCalls() {
-            add_action('wp_ajax_mgwp_test_configuration', array($this, 'sendEmail') );
+            add_action('wp_ajax_mgwp_test_configuration', array($this, 'sendEmail'));
         }
 
         public function getButtons() {
@@ -40,7 +43,7 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         public function getInputs() {
-           return array($this->toEmail, $this->ccEmail, $this->bccEmail, $this->subject, $this->message);
+            return array($this->toEmail, $this->ccEmail, $this->bccEmail, $this->subject, $this->message);
         }
 
         public function validateForm($formData) {
@@ -51,17 +54,49 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             return "dashicons dashicons-format-status";
         }
 
-        public function sendEmail(){
-            $usedProtocol = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_ProviderSettings);
-            sleep(2);
+        public function sendEmail() {
+           $providerSettings = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_ProviderSettings);
+            if (!$this->IsValid($providerSettings)) {
+                $this->createErrorResponse('Please select a sending method in Configuration page');
+                die();
+            }
+            $selectedProvider = $providerSettings['selectedProvider'];
+            $mailgunProvider = $this->getMailgunProvider($selectedProvider);
+            if (!$mailgunProvider->IsValid) {
+                $this->createErrorResponse($mailgunProvider->getValidationMessage());
+            }
+
+            $response = $mailgunProvider->sendEmail();
+            if (!$this->IsSent($response)) {
+                $this->createErrorResponse('Unable to send email. Mailgun response: ' . $response );
+            }
+            $this->createSuccessResponse('Email was sent successfully');
+        }
+
+        private function createSuccessResponse($message) {
             wp_send_json_success(
                 array(
-                    'data' => $usedProtocol,
-                    'message' => 'Email was sent successfull'
+                    'message' => $message
                 )
             );
             wp_die();
         }
+
+        private function createErrorResponse($message) {
+            wp_send_json_error(
+                array(
+                    'message' => $message
+                )
+            );
+        }
+
+        private function getMailgunProvider($selectedProvider){
+            if ($selectedProvider == ProviderSettingsForm::HTTP_PROVIDER) {
+                return new MailgunHttpProvider();
+            }
+            return new MailgunSmtpProvider();
+        }
+
 
         public function getSlug() {
             return Options::EmailSenderSettings_SendSettings;
@@ -77,6 +112,10 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
         protected function initializeButtons() {
             $this->sendEmailButton = new Button('button', 'emailSender', 'emailSender', 'Send email', null);
+        }
+
+        private function IsValid($providerSettings) {
+            echo $providerSettings != null && !empty($providerSettings);
         }
     }
 }

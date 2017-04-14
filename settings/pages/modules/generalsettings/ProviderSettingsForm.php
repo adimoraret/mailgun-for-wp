@@ -15,7 +15,8 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
      * Time: 11:30 PM
      */
     class ProviderSettingsForm extends AdminBaseForm {
-
+        const HTTP_PROVIDER = '0';
+        const SMTP_PROVIDER = '1';
         private $submitButton;
         private $selectedProvider;
 
@@ -52,8 +53,8 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
         protected function initializeInputs() {
             $radioButtons = array(
-                new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, '0'),
-                new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, '1')
+                new RadioButton('Http', 'selectedProvider', 'httpProvider', 'radio', 'Http Provider', false, self::HTTP_PROVIDER),
+                new RadioButton('Smtp', 'selectedProvider', 'smtpProvider', 'radio', 'Smtp Provider', false, self::HTTP_PROVIDER)
             );
             $this->selectedProvider = new RadioButtonGroup('Sending method', $radioButtons);
         }

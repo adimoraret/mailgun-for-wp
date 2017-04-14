@@ -3,10 +3,21 @@
   bottom: 51px;
   left: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .ns-bar span{
-  margin-left: 20px;
+  margin-left: 10px;
+  line-height: 20px;
+}
+
+.ns-bar span i{
+  line-height: initial;
+}
+
+.ns-bar span strong {
+  font-weight: 800;
+  margin-right: 5px;
 }
 
 .ns-bar .ns-close {
@@ -32,10 +43,6 @@
 /* Individual Effects */
 
 /* Slide on top */
-.ns-effect-slidetop {
-  box-shadow: inset 10px 0 #8ac38b;
-}
-
 .ns-effect-slidetop .icon {
   position: absolute;
   display: block;

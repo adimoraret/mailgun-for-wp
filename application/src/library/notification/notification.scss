@@ -10,6 +10,13 @@
 .ns-box-success {
   background-color: #cde0c4;
   color: #356635;
+  box-shadow: inset 5px 0 #8ac38b;
+}
+
+.ns-box-error {
+  background-color: #c26565;
+  color: #fff;
+  box-shadow: inset 5px 0 #953b39;
 }
 
 .ns-box.ns-show {

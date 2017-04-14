@@ -20,20 +20,29 @@ export class EmailSender{
         spinner.showSpinner();
         const notificationContainer = document.getElementsByClassName("widget-body")[0];
         SettingsForm.removeExistingNotifications(notificationContainer);
+        const notificationIcons = new Map([['success', ['dashicons','dashicons-yes']], ['error', ['dashicons','dashicons-no-alt']]]);
+        const notificationLabels = new Map([['success', 'Success'], ['error', 'Error']]);
+        let notificationOptions = { container: notificationContainer, icons: notificationIcons, labels: notificationLabels };
         this.ajaxRequest.post(this.ajaxUrl, data)
             .then(function (response) {
-                spinner.hideSpinner();
-                let options = {
-                    container: notificationContainer,
-                    message: response.data.message
-                };
-                const notification = new Notification(options);
-                notification.render();
+                if (response.success) {
+                    EmailSender.showNotification(spinner, notificationOptions, response.data.message, 'success');
+                }
+                else {
+                    EmailSender.showNotification(spinner, notificationOptions, response.data.message, 'error');
+                }
             })
             .catch(function (error) {
-                spinner.hideSpinner();
-                console.log(error);
+                EmailSender.showNotification(spinner, notificationOptions, error.data.message, 'error');
             });
+    }
+
+    static showNotification(spinner, options, message, status){
+        spinner.hideSpinner();
+        options.message = message;
+        options.status = status;
+        const notification = new Notification(options);
+        notification.render();
     }
 }
 

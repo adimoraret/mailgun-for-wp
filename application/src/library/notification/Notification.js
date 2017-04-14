@@ -22,31 +22,51 @@ export default class Notification {
         this.options.container.insertBefore(this.notificationElement, this.options.container.firstChild);
     }
 
-    dismiss(){
+    dismiss() {
         this.options.container.removeChild(this.notificationElement);
     }
 
     buildNotificationElement() {
-        const notificationNodes = this.getNotificationElementChildren(this.options.message);
-        notificationNodes.map(node => {this.notificationElement.appendChild(node)} );
-        this.notificationElement.className = Notification.getClassName();
+        const notificationNodes = this.getNotificationElementChildren();
+        notificationNodes.map(node => {
+            this.notificationElement.appendChild(node)
+        });
+        this.notificationElement.className = Notification.getClassName(this.options.status);
     }
 
-    getNotificationElementChildren(message) {
-        return [Notification.createMessageElement(message), this.closeButton]
+    getNotificationElementChildren() {
+        const message = this.options.message;
+        const iconClasses = this.options.icons.get(this.options.status);
+        const statusLabel = this.options.labels.get(this.options.status);
+        return [Notification.createMessageElement(message, iconClasses, statusLabel), this.closeButton]
     }
 
-    static createMessageElement(message){
+    static createMessageElement(message, iconClasses, statusLabel) {
         let messageNode = document.createElement('span');
-        messageNode.innerHTML = message;
+        const notificationIcon = Notification.createNotificationIcon(iconClasses);
+        const label = Notification.createNotificationLabel(statusLabel);
+        messageNode.innerHTML = notificationIcon.outerHTML + label.outerHTML + message;
         return messageNode;
     }
 
-    static getClassName() {
-        return "ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show ns-box-success";
+    static createNotificationIcon(iconClasses) {
+        let icon = document.createElement('i');
+        iconClasses.forEach((iconClass) => icon.classList.add(iconClass));
+        return icon;
     }
 
-    static createCloseButton(){
+    static createNotificationLabel(statusLabel){
+        let label = document.createElement('strong');
+        label.innerHTML = statusLabel;
+        return label;
+    }
+
+    static getClassName(status) {
+        const classes = ['ns-box', 'ns-bar', 'ns-effect-slidetop', 'ns-type-notice', 'ns-show', 'ns-box-' + status];
+        return classes.join(' ');
+    }
+
+    static createCloseButton() {
         let button = document.createElement('span');
         button.classList.add('ns-close');
         return button;
