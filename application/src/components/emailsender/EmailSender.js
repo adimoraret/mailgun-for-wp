@@ -14,7 +14,8 @@ export class EmailSender{
     }
 
     sendEmail(){
-        let data = new FormData();
+        const form = document.getElementById('mgwp_email_sender_settings');
+        let data = new FormData(form);
         data.append('action','mgwp_test_configuration');
         const spinner = new Spinner('mgwp_email_sender_settings_spinner');
         spinner.showSpinner();

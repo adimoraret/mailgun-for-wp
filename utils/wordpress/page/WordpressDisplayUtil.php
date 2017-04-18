@@ -124,15 +124,9 @@ namespace MailGunApiForWp\Utils\Wordpress\Page {
 
         private static function displayTextArea($input, $optionName, $dbValue){
             self::displayLabelHeader($input->getId(), $input->getLabel());
-            wp_editor($dbValue, $input->getId(), array('textarea_rows' => 30, 'media_buttons' => false));
-            ?>
-            <!--<textarea
-                class="text"
-                name="<?php echo $optionName . '[' . $input->getName() . ']';?>"
-                id="<?php echo $input->getId();?>"
-                placeholder="<?php echo $input->getPlaceHolder();?>"
-                ><?php echo $dbValue;?></textarea>-->
-        <?php }
+            $textAreaName = $optionName . '[' . $input->getName() . ']';
+            wp_editor($dbValue, $input->getId(), array('textarea_rows' => 30, 'media_buttons' => false, 'textarea_name' => $textAreaName));
+        }
 
         private static function displayLabelHeader($inputId, $text) { ?>
             <label for="<?php echo $inputId; ?>"><?php echo $text;?></label>
