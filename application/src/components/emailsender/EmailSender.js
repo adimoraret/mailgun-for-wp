@@ -14,6 +14,7 @@ export class EmailSender{
     }
 
     sendEmail(){
+        tinyMCE.triggerSave();
         const form = document.getElementById('mgwp_email_sender_settings');
         let data = new FormData(form);
         data.append('action','mgwp_test_configuration');
