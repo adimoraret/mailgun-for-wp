@@ -4,18 +4,15 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
         private $username;
         private $password;
         private $encryption;
-        private $mailMessage;
-        private $validationMessage = '';
-        private $invalidEmail;
 
         function __construct($username,
                              $password,
                              $encryption,
                              $mailMessage) {
+            parent::__construct($mailMessage);
             $this->username = $username;
             $this->password = $password;
             $this->encryption = $encryption;
-            $this->mailMessage = $mailMessage;
         }
 
         public function sendEmail() {
@@ -50,27 +47,6 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             $phpMailer->Port = $this->getPort($this->encryption);
         }
 
-        public function getContentType(){
-            if ($this->mailMessage->getIsHtml()){
-                return 'text/html';
-            }
-            return 'text/plain';
-        }
-
-        private function validateRecipients() {
-            $toRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getTo());
-            $ccRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getCc());
-            $bccRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getBcc());
-            if ($this->areAllEmpty($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray)) {
-                $this->validationMessage .= 'No recipient found. ';
-                return;
-            }
-            if ($this->hasInvalidEmail($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray)) {
-                $this->validationMessage .= 'At least one invalid email address: ' . $this->invalidEmail . '. ';
-                return;
-            }
-        }
-
         private function getPort($encryption){
             switch ($encryption) {
                 case '' : return 25;
@@ -81,56 +57,16 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             }
         }
 
-        private function validateSubject() {
-            if (empty($this->mailMessage->getSubject())) {
-                $this->validationMessage .= 'Subject is empty.';
-            }
-        }
-
-        private function validateMessage() {
-            if (empty($this->mailMessage->getMessage())) {
-                $this->validationMessage .= 'Message is empty.';
-            }
-        }
-
         private function validateSmtpSettings(){
             if (empty($this->username)) {
                 $this->validationMessage .= 'SMTP username not found.';
             }
             if (empty($this->password)) {
-                $this->validationMessage .= '';
+                $this->validationMessage .= 'SMTP password not found.';
             }
-        }
-
-        private function areAllEmpty($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray) {
-            return empty($toRecipientsArray) && empty($ccRecipientsArray) && empty($bccRecipientsArray);
-        }
-
-        private function hasInvalidEmail($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray) {
-            return $this->containsInvalidEmail($toRecipientsArray)
-                || $this->containsInvalidEmail($ccRecipientsArray)
-                || $this->containsInvalidEmail($bccRecipientsArray);
-        }
-
-        private function containsInvalidEmail($recipientsArray) {
-            foreach ($recipientsArray as $recipient) {
-                if (!empty($recipient) && !$this->isValidEmailAddress($recipient)) {
-                    $this->invalidEmail = $recipient;
-                    return true;
-                }
+            if (empty($this->encryption)) {
+                $this->validationMessage .= 'No encryption method selected.';
             }
-            return false;
-        }
-
-        private function isValidEmailAddress($recipient) {
-            return filter_var($recipient, FILTER_VALIDATE_EMAIL);
-        }
-
-        private function getRecipientsFromString($recipientsStr) {
-            $recipientArray = explode(',', trim($recipientsStr));
-            return array_filter($recipientArray, function ($element) {
-                return !empty($element);
-            });
         }
 
         private function setWordpressEmailFilters() {
