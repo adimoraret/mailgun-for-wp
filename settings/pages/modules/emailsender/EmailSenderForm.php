@@ -138,8 +138,8 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             $smtpSettings = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_SmtpSettings);
             $username = $smtpSettings['username'];
             $password = $smtpSettings['password'];
-            $port = $smtpSettings['port'];
-            return new MailgunSmtpProvider($username, $password, $port, $mailMessage);
+            $encryption = $smtpSettings['encryption'];
+            return new MailgunSmtpProvider($username, $password, $encryption, $mailMessage);
         }
     }
 }

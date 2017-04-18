@@ -17,10 +17,9 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
     class SmtpSettingsForm extends AdminBaseForm {
 
-        private $domainName;
         private $username;
         private $password;
-        private $port;
+        private $encryption;
         private $submitButton;
 
         function __construct() {
@@ -39,7 +38,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         }
 
         public function getInputs() {
-            return array($this->domainName, $this->username, $this->password, $this->port);
+            return array($this->username, $this->password, $this->encryption);
         }
 
         public function validateForm($formData) {
@@ -59,16 +58,15 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         }
 
         protected function initializeInputs() {
-            $this->domainName = new TextInput('Domain Name', 'domainname2', 'domainname2', 'text', 'Mailgun domain name', 'Your mailgun domain name', '');
             $this->username = new TextInput('Username', 'username', 'username', 'text', 'Mailgun smtp username', 'Your mailgun smtp username', '');
             $this->password = new TextInput('Password', 'password', 'password', 'password', 'Mailgun smtp passowrd', 'Your mailgun smtp password', '');
-            $ports = array(
-                new RadioButton('25', 'port', 'port25', 'radio', 'Port 25', false, '0'),
-                new RadioButton('465 SSL/TLS', 'port', 'port465', 'radio', 'Port 465 (SSL/TLS)', false, '1'),
-                new RadioButton('587 STARTTLS', 'port', 'port587', 'radio', 'Port 587 (STARTTLS)', false, '2'),
-                new RadioButton('2525', 'port', 'port2525', 'radio', 'Port 2525', false, '3'),
+            $encrypts = array(
+                new RadioButton('None', 'encryption', 'no_encryption', 'radio', 'No encryption', false, ''),
+                new RadioButton('SSL', 'encryption', 'ssl_encryption', 'radio', 'SSL encryption', false, 'ssl'),
+                new RadioButton('TLS', 'encryption', 'tls_encryption', 'radio', 'TLS encryption', false, 'tls'),
+                new RadioButton('TLS 2525', 'encryption', 'tls_2525_encryption', 'radio', 'TLS encryption', false, 'tls_2525')
             );
-            $this->port = new RadioButtonGroup('Port', $ports);
+            $this->encryption = new RadioButtonGroup('Encryption', $encrypts);
         }
     }
 }

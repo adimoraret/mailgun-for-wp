@@ -15,7 +15,6 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
     class HttpSettingsForm extends AdminBaseForm {
 
-        private $domainName;
         private $apiKey;
         private $fromAddress;
         private $fromName;
@@ -30,7 +29,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         }
 
         public function getInputs() {
-            return array($this->domainName, $this->apiKey, $this->fromAddress, $this->fromName);
+            return array($this->apiKey, $this->fromAddress, $this->fromName);
         }
 
         public function getButtons() {
@@ -53,7 +52,6 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         }
 
         protected function initializeInputs() {
-            $this->domainName = new TextInput('Domain Name', 'domainname', 'domainname', 'text', 'Mailgun domain name', 'Your mailgun domain name', '');
             $this->apiKey = new TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', '');
             $this->fromAddress = new TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', '');
             $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', '');

@@ -1,21 +1,20 @@
 <?php
 namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
     class MailgunSmtpProvider extends MailgunBaseProvider {
-        const HOST_NAME = 'smtp.mailgun.org';
         private $username;
         private $password;
-        private $port;
+        private $encryption;
         private $mailMessage;
         private $validationMessage = '';
         private $invalidEmail;
 
         function __construct($username,
                              $password,
-                             $port,
+                             $encryption,
                              $mailMessage) {
             $this->username = $username;
             $this->password = $password;
-            $this->port = $port;
+            $this->encryption = $encryption;
             $this->mailMessage = $mailMessage;
         }
 
@@ -47,8 +46,8 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             $phpMailer->SMTPAuth = true;
             $phpMailer->Username = $this->username;
             $phpMailer->Password = $this->password;
-            $phpMailer->Port = '465';
-            $phpMailer->SMTPSecure = 'ssl';
+            $phpMailer->SMTPSecure = $this->encryption;
+            $phpMailer->Port = $this->getPort($this->encryption);
         }
 
         public function getContentType(){
@@ -69,6 +68,16 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             if ($this->hasInvalidEmail($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray)) {
                 $this->validationMessage .= 'At least one invalid email address: ' . $this->invalidEmail . '. ';
                 return;
+            }
+        }
+
+        private function getPort($encryption){
+            switch ($encryption) {
+                case '' : return 25;
+                case 'ssl': return 465;
+                case 'tls': return 587;
+                case 'tls_2525': return 2525;
+                default: return 25;
             }
         }
 
