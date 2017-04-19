@@ -9,16 +9,16 @@
 namespace MailGunApiForWp\settings\pages\modules\EmailSender {
 
     use MailGunApiForWp\settings\pages\modules\AdminBaseForm;
-    use MailGunApiForWp\settings\pages\modules\GeneralSettings\ProviderSettingsForm;
     use MailGunApiForWp\Settings\Pages\Modules\Options;
-    use MailGunApiForWp\Utils\Email\Provider\Mailgun\MailgunHttpProvider;
-    use MailGunApiForWp\Utils\Email\Provider\Mailgun\MailgunSmtpProvider;
+    use MailGunApiForWp\Utils\Email\Provider\EmailProviderFactory;
     use MailGunApiForWp\utils\mailgun\MailMessage;
     use MailGunApiForWp\Utils\Wordpress\Page\Button\Button;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextArea;
     use MailGunApiForWp\Utils\Wordpress\Page\Input\TextInput;
 
     class EmailSenderForm extends AdminBaseForm {
+        const FROM = 'adrian.moraret@codetrest.com';
+        const FROM_NAME = 'Adrian Moraret';
 
         private $sendEmailButton;
         private $toEmail;
@@ -60,9 +60,11 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             $this->validateProviderIsSet($providers);
             $selectedProvider = $providers['selectedProvider'];
             $mailMessage = $this->createMailMessage();
-            $mailgunProvider = $this->getMailgunProvider($selectedProvider, $mailMessage);
-            $this->validateProviderIsValid($mailgunProvider);
-            $isSent = $mailgunProvider->sendEmail();
+            $mailProvider = EmailProviderFactory::getEmailProvider($selectedProvider);
+            $mailProvider->addFrom(self::FROM, self::FROM_NAME);
+            $mailProvider->setIsHtml(true);
+            $this->validateProviderIsValid($mailProvider, $mailMessage);
+            $isSent = $mailProvider->sendEmail($mailMessage);
             $this->validateEmailIsSent($isSent);
             $this->createSuccessResponse('Email was sent successfully');
         }
@@ -77,14 +79,6 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             wp_die();
         }
 
-        private function getMailgunProvider($selectedProvider, $mailMessage) {
-            if ($selectedProvider == ProviderSettingsForm::HTTP_PROVIDER) {
-                return new MailgunHttpProvider();
-            }
-            return $this->createMailgunSmtpProvider($mailMessage);
-        }
-
-
         public function getSlug() {
             return Options::EmailSenderSettings_SendSettings;
         }
@@ -97,7 +91,6 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             $this->message = new TextArea('', 'message', 'message', 'textarea', 'Message', 'Write your email here', '');
         }
 
-
         protected function initializeButtons() {
             $this->sendEmailButton = new Button('button', 'emailSender', 'emailSender', 'Send email', null);
         }
@@ -108,8 +101,8 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
             die();
         }
 
-        private function validateProviderIsValid($mailgunProvider) {
-            if (!$mailgunProvider->IsValid()) {
+        private function validateProviderIsValid($mailgunProvider, $mailMessage) {
+            if (!$mailgunProvider->IsValid($mailMessage)) {
                 $this->createErrorResponse($mailgunProvider->getValidationMessage());
             }
         }
@@ -121,25 +114,14 @@ namespace MailGunApiForWp\settings\pages\modules\EmailSender {
         }
 
         private function createMailMessage() {
-            $from = 'adrian.moraret@codetrest.com';
-            $fromName = 'Adrian Moraret';
             $formData = wp_kses_post($_POST[Options::EmailSenderSettings_SendSettings]);
             $to = $formData[$this->toEmail->getName()];
             $cc = $formData[$this->ccEmail->getName()];
             $bcc = $formData[$this->bccEmail->getName()];
             $subject = $formData[$this->subject->getName()];
             $message = $formData[$this->message->getName()];
-            $isHtml = true;
             $attachments = null;
-            return new MailMessage($from, $fromName, $to, $cc, $bcc, $subject, $message, $isHtml, $attachments);
-        }
-
-        private function createMailgunSmtpProvider($mailMessage){
-            $smtpSettings = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_SmtpSettings);
-            $username = $smtpSettings['username'];
-            $password = $smtpSettings['password'];
-            $encryption = $smtpSettings['encryption'];
-            return new MailgunSmtpProvider($username, $password, $encryption, $mailMessage);
+            return new MailMessage($to, $cc, $bcc, $subject, $message, $attachments);
         }
     }
 }

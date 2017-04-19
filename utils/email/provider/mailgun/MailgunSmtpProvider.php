@@ -4,28 +4,25 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
         private $username;
         private $password;
         private $encryption;
-
         function __construct($username,
                              $password,
-                             $encryption,
-                             $mailMessage) {
-            parent::__construct($mailMessage);
+                             $encryption) {
             $this->username = $username;
             $this->password = $password;
             $this->encryption = $encryption;
         }
 
-        public function sendEmail() {
+        public function sendEmail($mailMessage) {
             $this->setWordpressEmailFilters();
-            $response = wp_mail($this->mailMessage->getTo(), $this->mailMessage->getSubject(), $this->mailMessage->getMessage());
+            $response = wp_mail($mailMessage->getTo(), $mailMessage->getSubject(), $mailMessage->getMessage());
             $this->resetWordpressEmailFilters();
             return $response;
         }
 
-        public function IsValid() {
-            $this->validateRecipients();
-            $this->validateSubject();
-            $this->validateMessage();
+        public function IsValid($mailMessage) {
+            $this->validateRecipients($mailMessage);
+            $this->validateSubject($mailMessage);
+            $this->validateMessage($mailMessage);
             $this->validateSmtpSettings();
             return $this->validationMessage === '';
         }
@@ -36,9 +33,9 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
 
         public function setPhpMailerConfiguration($phpMailer) {
             $phpMailer->Mailer = 'smtp';
-            $phpMailer->Sender = $this->mailMessage->getFrom();
-            $phpMailer->From = $this->mailMessage->getFrom();
-            $phpMailer->FromName = $this->mailMessage->getFromName();
+            $phpMailer->Sender = $this->from;
+            $phpMailer->From = $this->from;
+            $phpMailer->FromName = $this->fromName;
             $phpMailer->Host = self::HOST_NAME;
             $phpMailer->SMTPAuth = true;
             $phpMailer->Username = $this->username;
@@ -47,17 +44,22 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             $phpMailer->Port = $this->getPort($this->encryption);
         }
 
-        private function getPort($encryption){
+        private function getPort($encryption) {
             switch ($encryption) {
-                case '' : return 25;
-                case 'ssl': return 465;
-                case 'tls': return 587;
-                case 'tls_2525': return 2525;
-                default: return 25;
+                case '' :
+                    return 25;
+                case 'ssl':
+                    return 465;
+                case 'tls':
+                    return 587;
+                case 'tls_2525':
+                    return 2525;
+                default:
+                    return 25;
             }
         }
 
-        private function validateSmtpSettings(){
+        private function validateSmtpSettings() {
             if (empty($this->username)) {
                 $this->validationMessage .= 'SMTP username not found.';
             }

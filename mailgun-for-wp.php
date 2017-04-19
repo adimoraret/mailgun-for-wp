@@ -41,6 +41,7 @@ namespace MailGunApiForWp {
             'MailgunBaseProvider'   => '/utils/email/provider/mailgun/MailgunBaseProvider.php',
             'MailgunHttpProvider'   => '/utils/email/provider/mailgun/MailgunHttpProvider.php',
             'MailgunSmtpProvider'   => '/utils/email/provider/mailgun/MailgunSmtpProvider.php',
+            'EmailProviderFactory'  => '/utils/email/provider/EmailProviderFactory.php',
             'WordpressUtil'         => '/utils/wordpress/WordpressUtil.php',
             'WordpressDisplayUtil'  => '/utils/wordpress/page/WordpressDisplayUtil.php',
             'Button'                => '/utils/wordpress/page/button/Button.php',

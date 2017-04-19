@@ -2,29 +2,38 @@
 namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
     abstract class MailgunBaseProvider {
         const HOST_NAME = 'smtp.mailgun.org';
+        protected $from;
+        protected $fromName;
+        protected $isHtml;
+        protected $contentType;
         protected $invalidEmail;
         protected $validationMessage = '';
-        protected $mailMessage;
 
-        function __construct($mailMessage) {
-            $this->mailMessage = $mailMessage;
-        }
 
-        public abstract function sendEmail();
-        public abstract function IsValid();
+        public abstract function sendEmail($mailMessage);
+        public abstract function IsValid($mailMessage);
         public abstract function getValidationMessage();
 
+        public function addFrom($from, $fromName){
+            $this->from = $from;
+            $this->fromName = $fromName;
+        }
+
+        public function setIsHtml($isHtml){
+            $this->isHtml = $isHtml;
+        }
+
         public function getContentType(){
-            if ($this->mailMessage->getIsHtml()){
+            if ($this->contentType){
                 return 'text/html';
             }
             return 'text/plain';
         }
 
-        protected function validateRecipients() {
-            $toRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getTo());
-            $ccRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getCc());
-            $bccRecipientsArray = $this->getRecipientsFromString($this->mailMessage->getBcc());
+        protected function validateRecipients($mailMessage) {
+            $toRecipientsArray = $this->getRecipientsFromString($mailMessage->getTo());
+            $ccRecipientsArray = $this->getRecipientsFromString($mailMessage->getCc());
+            $bccRecipientsArray = $this->getRecipientsFromString($mailMessage->getBcc());
             if ($this->areAllEmpty($toRecipientsArray, $ccRecipientsArray, $bccRecipientsArray)) {
                 $this->validationMessage .= 'No recipient found. ';
                 return;
@@ -35,14 +44,14 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
             }
         }
 
-        protected function validateSubject() {
-            if (empty($this->mailMessage->getSubject())) {
+        protected function validateSubject($mailMessage) {
+            if (empty($mailMessage->getSubject())) {
                 $this->validationMessage .= 'Subject is empty.';
             }
         }
 
-        protected function validateMessage() {
-            if (empty($this->mailMessage->getMessage())) {
+        protected function validateMessage($mailMessage) {
+            if (empty($mailMessage->getMessage())) {
                 $this->validationMessage .= 'Message is empty.';
             }
         }

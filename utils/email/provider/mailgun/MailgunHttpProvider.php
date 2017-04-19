@@ -2,10 +2,14 @@
 namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
     class MailgunHttpProvider extends MailgunBaseProvider {
 
-        public function sendEmail() {
+        public function __construct($from, $fromName) {
+            parent::__construct($from, $fromName);
         }
 
-        public function IsValid() {
+        public function sendEmail($mailMessage) {
+        }
+
+        public function IsValid($mailMessage) {
             return false;
         }
 

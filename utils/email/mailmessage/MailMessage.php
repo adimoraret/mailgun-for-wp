@@ -10,25 +10,19 @@ namespace MailGunApiForWp\utils\mailgun;
 
 class MailMessage {
 
-    private $from;
-    private $fromName;
     private $to;
     private $cc;
     private $bcc;
     private $subject;
     private $message;
-    private $isHtml;
     private $attachment;
 
-    public function __construct($from, $fromName, $to, $cc, $bcc, $subject, $message, $isHtml, $attachment) {
-        $this->from = $from;
-        $this->fromName = $fromName;
+    public function __construct($to, $cc, $bcc, $subject, $message, $attachment) {
         $this->to = $to;
         $this->cc = $cc;
         $this->bcc = $bcc;
         $this->subject = $subject;
         $this->message = $message;
-        $this->isHtml = $isHtml;
         $this->attachment = $attachment;
     }
 
@@ -52,19 +46,7 @@ class MailMessage {
         return $this->message;
     }
 
-    public function getIsHtml() {
-        return $this->isHtml;
-    }
-
     public function getAttachment() {
         return $this->attachment;
-    }
-
-    public function getFrom() {
-        return $this->from;
-    }
-
-    public function getFromName() {
-        return $this->fromName;
     }
 }

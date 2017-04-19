@@ -16,8 +16,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
     class HttpSettingsForm extends AdminBaseForm {
 
         private $apiKey;
-        private $fromAddress;
-        private $fromName;
+        private $domain;
         private $submitButton;
 
         public function __construct() {
@@ -29,7 +28,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
         }
 
         public function getInputs() {
-            return array($this->apiKey, $this->fromAddress, $this->fromName);
+            return array($this->apiKey, $this->domain);
         }
 
         public function getButtons() {
@@ -53,8 +52,7 @@ namespace MailGunApiForWp\settings\pages\modules\GeneralSettings {
 
         protected function initializeInputs() {
             $this->apiKey = new TextInput('API Key', 'apikey', 'apikey', 'text', 'Mailgun api key', 'Your mailgun api key', '');
-            $this->fromAddress = new TextInput('From address', 'fromaddress', 'fromaddress', 'email', 'From email address', 'Your from email address', '');
-            $this->fromName = new TextInput('From name', 'fromname', 'fromname', 'text', 'From name', 'Your from name', '');
+            $this->domain = new TextInput('Domain', 'domain', 'domain', 'text', 'Domain', 'Your domain (eg. yourwebsite.com)', '');
         }
 
         public function getSlug() {
