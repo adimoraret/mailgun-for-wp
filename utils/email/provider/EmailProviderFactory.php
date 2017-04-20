@@ -28,9 +28,9 @@ namespace MailGunApiForWp\Utils\Email\Provider {
 
         private static function createMailgunHttpProvider(){
             $httpSettings = Options::getSavedOptionsByFormSlug(Options::GeneralSettings_HttpSettings);
+	        $domain = $httpSettings['domain'];
             $apiKey = $httpSettings['apikey'];
-            $domain = $httpSettings['domain'];
-            return new MailgunHttpProvider($apiKey, $domain);
+            return new MailgunHttpProvider($domain, $apiKey);
         }
     }
 }

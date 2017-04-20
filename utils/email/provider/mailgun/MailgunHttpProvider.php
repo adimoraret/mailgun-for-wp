@@ -14,8 +14,8 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
 			$requestBody = $this->convertMailMessageToRequestBody( $mailMessage );
 			$headers     = $this->createRequestHeaders();
 			$postData    = array(
-				'body'    => $requestBody,
-				'headers' => $headers
+				'headers' => $headers,
+				'body'    => $requestBody
 			);
 			$url         = $this->getMailgunSendEmailUrl();
 
@@ -23,22 +23,48 @@ namespace MailGunApiForWp\Utils\Email\Provider\Mailgun {
 		}
 
 		public function IsValid( $mailMessage ) {
-			return false;
+			$this->validateRecipients($mailMessage);
+			$this->validateSubject($mailMessage);
+			$this->validateMessage($mailMessage);
+			$this->validateHttpSettings();
+			return $this->validationMessage === '';
 		}
 
 		public function getValidationMessage() {
-			return "Error in MailgunHttpProvider";
+			return $this->validationMessage;
 		}
 
 		private function convertMailMessageToRequestBody( $mailMessage ) {
+			return array(
+				'from' => $this->getFromNameAndEmail(),
+				'to' => $mailMessage->getTo(),
+				'subject' => $mailMessage->getSubject(),
+				'html' => $mailMessage->getMessage()
+			);
 		}
 
 		private function createRequestHeaders() {
+			return array(
+				'Authorization' => 'Basic '.base64_encode('api:' . $this->apiKey)
+			);
 		}
 
 		private function getMailgunSendEmailUrl() {
-			return "https://api.mailgun.net/v3/$this->domain/messages";
+			return 'https://api.mailgun.net/v3/' . $this->domain . '/messages';
 		}
 
+		private function getFromNameAndEmail(){
+			if (empty($this->fromName)) return $this->from;
+			return $this->fromName . '<' . $this->from . '>';
+		}
+
+		private function validateHttpSettings() {
+			if (empty($this->domain)) {
+				$this->validationMessage .= 'Domain was not set yet.';
+			}
+			if (empty($this->apiKey)) {
+				$this->validationMessage .= 'Api key was not set yet.';
+			}
+		}
 	}
 }
